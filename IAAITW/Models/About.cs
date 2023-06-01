@@ -18,7 +18,20 @@ namespace IAAITW.Models
         [MaxLength(4000)]
         public string AboutUs { get; set; }
 
-        [Display(Name = "建立時間")]
-        public DateTime InitDate { get; set; }
+        [Display(Name = "組織架構")]
+        [MaxLength(4000)]
+        public string Organization { get; set; }
+
+        [Display(Name = "沿革")]
+        [MaxLength(4000)]
+        public string History { get; set; }
+
+        [Display(Name = "配證會員")]
+        [MaxLength(4000)]
+        public string LicensedMember { get; set; }
+
+        [Display(Name = "專家介紹")]
+        [MaxLength(4000)]
+        public string Expert { get; set; }
     }
 }

@@ -253,6 +253,10 @@
     <Compile Include="Migrations\202305312008586_addCMSAccountAndAbout.Designer.cs">
       <DependentUpon>202305312008586_addCMSAccountAndAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306010612126_amendAboutsTable.cs" />
+    <Compile Include="Migrations\202306010612126_amendAboutsTable.Designer.cs">
+      <DependentUpon>202306010612126_amendAboutsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\CMSAccount.cs" />
@@ -1240,6 +1244,10 @@
     <Content Include="CKFinderScripts\lang\az.json" />
     <Content Include="Areas\CMS\Views\About\AboutUs.cshtml" />
     <Content Include="NLog.config" />
+    <Content Include="Areas\CMS\Views\About\Organization.cshtml" />
+    <Content Include="Areas\CMS\Views\About\History.cshtml" />
+    <Content Include="Areas\CMS\Views\About\LicensedMember.cshtml" />
+    <Content Include="Areas\CMS\Views\About\Expert.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1306,6 +1314,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202305312008586_addCMSAccountAndAbout.resx">
       <DependentUpon>202305312008586_addCMSAccountAndAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306010612126_amendAboutsTable.resx">
+      <DependentUpon>202306010612126_amendAboutsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -28,12 +28,5 @@ namespace IAAITW.Models
             public string Text { get; set; }
             public string Url { get; set; }
         }
-
-        public class CKEditor
-        {
-            [MaxLength(4000)]
-            public string AboutUs { get; set; }
-            public DateTime InitDate { get; set; } = DateTime.Now;
-        }
     }
 }

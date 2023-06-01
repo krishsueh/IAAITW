@@ -20,39 +20,192 @@ namespace IAAITW.Areas.CMS.Controllers
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "關於我們", Url = null });
             ViewBag.Breadcrumb = breadcrumb;
 
-            var existingAboutUs = db.Abouts.FirstOrDefault();
-            if (existingAboutUs == null)
+            var existingAbout = db.Abouts.FirstOrDefault();
+            if (existingAbout == null)
             {
                 return View();
-                //return HttpNotFound();
             }
-            return View(existingAboutUs);
+            return View(existingAbout);
         }
 
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult AboutUs(ViewModel.CKEditor view)
+        public ActionResult AboutUs(About editor)
         {
             if (ModelState.IsValid)
             {
-                var existingAboutUs = db.Abouts.FirstOrDefault();
-                if (existingAboutUs == null)
+                var existingAbout = db.Abouts.FirstOrDefault();
+                if (existingAbout == null)
                 {
-                    About addingAboutUs = new About();
-                    addingAboutUs.AboutUs = view.AboutUs;
-                    addingAboutUs.InitDate = DateTime.Now;
-                    db.Abouts.Add(addingAboutUs);
+                    About addingAbout = new About();
+                    addingAbout.AboutUs = editor.AboutUs;
+                    db.Abouts.Add(addingAbout);
                     db.SaveChanges();
                     return RedirectToAction("AboutUs");
                 }
-                existingAboutUs.AboutUs = view.AboutUs;
-                existingAboutUs.InitDate = DateTime.Now;
-                db.Entry(existingAboutUs).State = EntityState.Modified;
+                existingAbout.AboutUs = editor.AboutUs;
+                db.Entry(existingAbout).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("AboutUs");
             }
-            return View(view);
+            return View(editor);
+        }
+
+        public ActionResult Organization()
+        {
+            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "關於我們", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "組織架構", Url = null });
+            ViewBag.Breadcrumb = breadcrumb;
+
+            var existingAbout = db.Abouts.FirstOrDefault();
+            if (existingAbout == null)
+            {
+                return View();
+            }
+            return View(existingAbout);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Organization(About editor)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingAbout = db.Abouts.FirstOrDefault();
+                if (existingAbout == null)
+                {
+                    About addingAbout = new About();
+                    addingAbout.Organization = editor.Organization;
+                    db.Abouts.Add(addingAbout);
+                    db.SaveChanges();
+                    return RedirectToAction("Organization");
+                }
+                existingAbout.Organization = editor.Organization;
+                db.Entry(existingAbout).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Organization");
+            }
+            return View(editor);
+        }
+
+        public ActionResult History()
+        {
+            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "關於我們", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "沿革", Url = null });
+            ViewBag.Breadcrumb = breadcrumb;
+
+            var existingAbout = db.Abouts.FirstOrDefault();
+            if (existingAbout == null)
+            {
+                return View();
+            }
+            return View(existingAbout);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult History(About editor)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingAbout = db.Abouts.FirstOrDefault();
+                if (existingAbout == null)
+                {
+                    About addingAbout = new About();
+                    addingAbout.History = editor.History;
+                    db.Abouts.Add(addingAbout);
+                    db.SaveChanges();
+                    return RedirectToAction("History");
+                }
+                existingAbout.History = editor.History;
+                db.Entry(existingAbout).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("History");
+            }
+            return View(editor);
+        }
+
+        public ActionResult LicensedMember()
+        {
+            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "關於我們", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "配證會員", Url = null });
+            ViewBag.Breadcrumb = breadcrumb;
+
+            var existingAbout = db.Abouts.FirstOrDefault();
+            if (existingAbout == null)
+            {
+                return View();
+            }
+            return View(existingAbout);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult LicensedMember(About editor)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingAbout = db.Abouts.FirstOrDefault();
+                if (existingAbout == null)
+                {
+                    About addingAbout = new About();
+                    addingAbout.LicensedMember = editor.LicensedMember;
+                    db.Abouts.Add(addingAbout);
+                    db.SaveChanges();
+                    return RedirectToAction("LicensedMember");
+                }
+                existingAbout.LicensedMember = editor.LicensedMember;
+                db.Entry(existingAbout).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("LicensedMember");
+            }
+            return View(editor);
+        }
+
+        public ActionResult Expert()
+        {
+            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "關於我們", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "專家介紹", Url = null });
+            ViewBag.Breadcrumb = breadcrumb;
+
+            var existingAbout = db.Abouts.FirstOrDefault();
+            if (existingAbout == null)
+            {
+                return View();
+            }
+            return View(existingAbout);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Expert(About editor)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingAbout = db.Abouts.FirstOrDefault();
+                if (existingAbout == null)
+                {
+                    About addingAbout = new About();
+                    addingAbout.Expert = editor.Expert;
+                    db.Abouts.Add(addingAbout);
+                    db.SaveChanges();
+                    return RedirectToAction("Expert");
+                }
+                existingAbout.Expert = editor.Expert;
+                db.Entry(existingAbout).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Expert");
+            }
+            return View(editor);
         }
     }
 }

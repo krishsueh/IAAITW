@@ -1,12 +1,12 @@
 ﻿@model IAAITW.Models.About
 
 @{
-    ViewBag.Title = "AboutUs";
+    ViewBag.Title = "Expert";
     Layout = "~/Areas/CMS/Views/Shared/_Layout.cshtml";
 }
 
 <div class="card-header">
-    <h5>關於我們</h5>
+    <h5>專家介紹</h5>
 </div>
 
 <div class="card-block">
@@ -19,15 +19,15 @@
 
             <div class="form-group">
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.AboutUs, new { @class = "ckeditor" })
-                    @Html.ValidationMessageFor(model => model.AboutUs, "", new { @class = "text-danger" })
+                    @Html.TextAreaFor(model => model.Expert, new { @class = "ckeditor" })
+                    @Html.ValidationMessageFor(model => model.Expert, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            @Html.HiddenFor(model => model.Organization)
+            @Html.HiddenFor(model => model.AboutUs)
             @Html.HiddenFor(model => model.History)
+            @Html.HiddenFor(model => model.Organization)
             @Html.HiddenFor(model => model.LicensedMember)
-            @Html.HiddenFor(model => model.Expert)
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -41,3 +41,5 @@
         CKFinder.setupCKEditor(editor);
     </script>
 </div>
+
+

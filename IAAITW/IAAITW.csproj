@@ -257,6 +257,10 @@
     <Compile Include="Migrations\202306010612126_amendAboutsTable.Designer.cs">
       <DependentUpon>202306010612126_amendAboutsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306010658451_delMaxLengthInAbouts.cs" />
+    <Compile Include="Migrations\202306010658451_delMaxLengthInAbouts.Designer.cs">
+      <DependentUpon>202306010658451_delMaxLengthInAbouts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\CMSAccount.cs" />
@@ -1070,6 +1074,8 @@
     <Content Include="Scripts\ckeditor\plugins\about\dialogs\about.js" />
     <Content Include="Scripts\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
     <Content Include="Scripts\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Scripts\ckeditor\plugins\autogrow\plugin.js" />
+    <Content Include="Scripts\ckeditor\plugins\autogrow\samples\autogrow.html" />
     <Content Include="Scripts\ckeditor\plugins\clipboard\dialogs\paste.js" />
     <Content Include="Scripts\ckeditor\plugins\dialog\dialogDefinition.js" />
     <Content Include="Scripts\ckeditor\plugins\dialog\styles\dialog.css" />
@@ -1317,6 +1323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306010612126_amendAboutsTable.resx">
       <DependentUpon>202306010612126_amendAboutsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306010658451_delMaxLengthInAbouts.resx">
+      <DependentUpon>202306010658451_delMaxLengthInAbouts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

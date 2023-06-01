@@ -18,10 +18,8 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group">
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.LicensedMember, new { @class = "ckeditor" })
-                    @Html.ValidationMessageFor(model => model.LicensedMember, "", new { @class = "text-danger" })
-                </div>
+                @Html.TextAreaFor(model => model.LicensedMember, new { @class = "ckeditor" })
+                @Html.ValidationMessageFor(model => model.LicensedMember, "", new { @class = "text-danger" })
             </div>
 
             @Html.HiddenFor(model => model.AboutUs)
@@ -30,9 +28,7 @@
             @Html.HiddenFor(model => model.Expert)
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="儲存" class="btn btn-block btn-primary" />
-                </div>
+                <input type="submit" value="儲存" class="btn btn-block btn-primary" />
             </div>
         </div>
     }

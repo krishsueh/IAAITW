@@ -25,7 +25,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'colors' },
 		{ name: 'about' }
 	];
-	config.extraPlugins = 'colorbutton,panelbutton,floatpanel,button,panel';
+	config.extraPlugins = 'colorbutton,panelbutton,floatpanel,button,panel,autogrow';
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
@@ -36,4 +36,9 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+	// autogrow
+	config.autoGrow_minHeight = 200;
+	config.autoGrow_maxHeight = 500;
+	config.autoGrow_bottomSpace = 50;
 };

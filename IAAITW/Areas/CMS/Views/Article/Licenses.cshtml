@@ -1,0 +1,38 @@
+﻿@model IAAITW.Models.Service
+@{
+    ViewBag.Title = "Licenses";
+    Layout = "~/Areas/CMS/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card-header">
+    <h5>訓練、認證、發照</h5>
+</div>
+
+<div class="card-block">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.TextAreaFor(model => model.Licenses, new { @class = "ckeditor" })
+                @Html.ValidationMessageFor(model => model.Licenses, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.HiddenFor(model => model.Jobs)
+            @Html.HiddenFor(model => model.Refer)
+            @Html.HiddenFor(model => model.Survey)
+
+            <div class="form-group">
+                <input type="submit" value="儲存" class="btn btn-block btn-primary" />
+            </div>
+        </div>
+    }
+    <script>
+        var editor = CKEDITOR.replace('ckeditor');
+        CKFinder.setupCKEditor(editor);
+    </script>
+</div>
+

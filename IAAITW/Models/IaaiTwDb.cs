@@ -23,6 +23,7 @@ namespace IAAITW.Models
         public virtual DbSet<CMSAccount> CMSAccounts { get; set; }
         public virtual DbSet<CMSIdentity> CMSIdentities { get; set; }
         public virtual DbSet<About> Abouts { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
     }
 
     //public class MyEntity

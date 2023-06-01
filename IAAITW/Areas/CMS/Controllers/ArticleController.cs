@@ -8,7 +8,7 @@ using IAAITW.Models;
 
 namespace IAAITW.Areas.CMS.Controllers
 {
-    public class AboutController : Controller
+    public class ArticleController : Controller
     {
         private IaaiTwDb db = new IaaiTwDb();
 
@@ -206,6 +206,162 @@ namespace IAAITW.Areas.CMS.Controllers
                 return RedirectToAction("Expert");
             }
             return View(editor);
+        }
+
+        public ActionResult Job()
+        {
+            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協會業務", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協會業務", Url = null });
+            ViewBag.Breadcrumb = breadcrumb;
+
+            var existingService = db.Services.FirstOrDefault();
+            if (existingService == null)
+            {
+                return View();
+            }
+            return View(existingService);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Job(Service view)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingService = db.Services.FirstOrDefault();
+                if (existingService == null)
+                {
+                    Service addingService = new Service();
+                    addingService.Jobs = view.Jobs;
+                    db.Services.Add(addingService);
+                    db.SaveChanges();
+                    return RedirectToAction("Job");
+                }
+                existingService.Jobs = view.Jobs;
+                db.Entry(existingService).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Job");
+            }
+            return View(view);
+        }
+
+        public ActionResult Licenses()
+        {
+            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協會業務", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "訓練、認證、發照", Url = null });
+            ViewBag.Breadcrumb = breadcrumb;
+
+            var existingService = db.Services.FirstOrDefault();
+            if (existingService == null)
+            {
+                return View();
+            }
+            return View(existingService);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Licenses(Service view)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingService = db.Services.FirstOrDefault();
+                if (existingService == null)
+                {
+                    Service addingService = new Service();
+                    addingService.Licenses = view.Licenses;
+                    db.Services.Add(addingService);
+                    db.SaveChanges();
+                    return RedirectToAction("Licenses");
+                }
+                existingService.Licenses = view.Licenses;
+                db.Entry(existingService).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Licenses");
+            }
+            return View(view);
+        }
+
+        public ActionResult Refer()
+        {
+            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協會業務", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "諮詢、顧問", Url = null });
+            ViewBag.Breadcrumb = breadcrumb;
+
+            var existingService = db.Services.FirstOrDefault();
+            if (existingService == null)
+            {
+                return View();
+            }
+            return View(existingService);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Refer(Service view)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingService = db.Services.FirstOrDefault();
+                if (existingService == null)
+                {
+                    Service addingService = new Service();
+                    addingService.Refer = view.Refer;
+                    db.Services.Add(addingService);
+                    db.SaveChanges();
+                    return RedirectToAction("Refer");
+                }
+                existingService.Refer = view.Refer;
+                db.Entry(existingService).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Refer");
+            }
+            return View(view);
+        }
+
+        public ActionResult Survey()
+        {
+            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協會業務", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "縱火調查", Url = null });
+            ViewBag.Breadcrumb = breadcrumb;
+
+            var existingService = db.Services.FirstOrDefault();
+            if (existingService == null)
+            {
+                return View();
+            }
+            return View(existingService);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Survey(Service view)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingService = db.Services.FirstOrDefault();
+                if (existingService == null)
+                {
+                    Service addingService = new Service();
+                    addingService.Survey = view.Survey;
+                    db.Services.Add(addingService);
+                    db.SaveChanges();
+                    return RedirectToAction("Survey");
+                }
+                existingService.Survey = view.Survey;
+                db.Entry(existingService).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Survey");
+            }
+            return View(view);
         }
     }
 }

@@ -242,7 +242,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
-    <Compile Include="Areas\CMS\Controllers\AboutController.cs" />
+    <Compile Include="Areas\CMS\Controllers\ArticleController.cs" />
     <Compile Include="Areas\CMS\Controllers\AccountsController.cs" />
     <Compile Include="Areas\CMS\Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -261,11 +261,16 @@
     <Compile Include="Migrations\202306010658451_delMaxLengthInAbouts.Designer.cs">
       <DependentUpon>202306010658451_delMaxLengthInAbouts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306010833238_addService.cs" />
+    <Compile Include="Migrations\202306010833238_addService.Designer.cs">
+      <DependentUpon>202306010833238_addService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\CMSAccount.cs" />
     <Compile Include="Models\CMSIdentity.cs" />
     <Compile Include="Models\IaaiTwDb.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBasedAuthenticator.cs" />
@@ -1248,12 +1253,16 @@
     <Content Include="CKFinderScripts\lang\bs.json" />
     <Content Include="CKFinderScripts\lang\bg.json" />
     <Content Include="CKFinderScripts\lang\az.json" />
-    <Content Include="Areas\CMS\Views\About\AboutUs.cshtml" />
+    <Content Include="Areas\CMS\Views\Article\AboutUs.cshtml" />
     <Content Include="NLog.config" />
-    <Content Include="Areas\CMS\Views\About\Organization.cshtml" />
-    <Content Include="Areas\CMS\Views\About\History.cshtml" />
-    <Content Include="Areas\CMS\Views\About\LicensedMember.cshtml" />
-    <Content Include="Areas\CMS\Views\About\Expert.cshtml" />
+    <Content Include="Areas\CMS\Views\Article\Organization.cshtml" />
+    <Content Include="Areas\CMS\Views\Article\History.cshtml" />
+    <Content Include="Areas\CMS\Views\Article\LicensedMember.cshtml" />
+    <Content Include="Areas\CMS\Views\Article\Expert.cshtml" />
+    <Content Include="Areas\CMS\Views\Article\Job.cshtml" />
+    <Content Include="Areas\CMS\Views\Article\Licenses.cshtml" />
+    <Content Include="Areas\CMS\Views\Article\Refer.cshtml" />
+    <Content Include="Areas\CMS\Views\Article\Survey.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1326,6 +1335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306010658451_delMaxLengthInAbouts.resx">
       <DependentUpon>202306010658451_delMaxLengthInAbouts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306010833238_addService.resx">
+      <DependentUpon>202306010833238_addService.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

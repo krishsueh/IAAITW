@@ -77,53 +77,38 @@
             <div class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
 
-
+                    @*首頁、帳號管理*@
                     <li class="nav-item pcoded-menu-caption">
                         <label>Navigation</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
                         <a href="@Url.Action("Index","Home")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">首頁</span></a>
                     </li>
-                    @*帳號管理*@
                     <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item" style="display: @display;">
                         <a href="@Url.Action("Index","Accounts")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">帳號管理</span></a>
                     </li>
 
+                    @*前台內容管理*@
                     <li class="nav-item pcoded-menu-caption" style="display: @display;">
-                        <label>關於我們</label>
-                    </li>
-                    @*關於我們*@
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item" style="display: @display;">
-                        <a href="@Url.Action("AboutUs","About")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">關於我們</span></a>
-                    </li>
-                    @*組織架構*@
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item" style="display: @display;">
-                        <a href="@Url.Action("Organization","About")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">組織架構</span></a>
-                    </li>
-                    @*沿革*@
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item" style="display: @display;">
-                        <a href="@Url.Action("History","About")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">沿革</span></a>
-                    </li>
-                    @*配證會員*@
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item" style="display: @display;">
-                        <a href="@Url.Action("LicensedMember","About")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">配證會員</span></a>
-                    </li>
-                    @*專家介紹*@
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item" style="display: @display;">
-                        <a href="@Url.Action("Expert","About")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">專家介紹</span></a>
-                    </li>
-
-                    <li class="nav-item pcoded-menu-caption" style="display: @display;">
-                        <label>關於我們</label>
+                        <label>前台內容管理</label>
                     </li>
                     <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu" style="display: @display;">
                         <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">關於我們</span></a>
                         <ul class="pcoded-submenu">
-                            <li class=""><a href="@Url.Action("AboutUs","About")" class="">關於我們</a></li>
-                            <li class=""><a href="#" class="">組織架構</a></li>
-                            <li class=""><a href="#" class="">沿革</a></li>
-                            <li class=""><a href="#" class="">配證會員</a></li>
-                            <li class=""><a href="#" class="">專家介紹</a></li>
+                            <li class=""><a href="@Url.Action("AboutUs","Article")" class="">關於我們</a></li>
+                            <li class=""><a href="@Url.Action("Organization","Article")" class="">組織架構</a></li>
+                            <li class=""><a href="@Url.Action("History","Article")" class="">沿革</a></li>
+                            <li class=""><a href="@Url.Action("LicensedMember","Article")" class="">配證會員</a></li>
+                            <li class=""><a href="@Url.Action("Expert","Article")" class="">專家介紹</a></li>
+                        </ul>
+                    </li>
+                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu" style="display: @display;">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">協會業務</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="@Url.Action("Job","Article")" class="">協會業務</a></li>
+                            <li class=""><a href="@Url.Action("Licenses","Article")" class="">訓練、認證、發照</a></li>
+                            <li class=""><a href="@Url.Action("Refer","Article")" class="">諮詢、顧問</a></li>
+                            <li class=""><a href="@Url.Action("Survey","Article")" class="">縱火調查</a></li>
                         </ul>
                     </li>
 

@@ -26,6 +26,7 @@ namespace IAAITW.Models
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Knowledge> Knowledges { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
     }
 
     //public class MyEntity

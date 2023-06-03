@@ -6902,6 +6902,16 @@ pre[class*=language-]:after, pre[class*=language-]:before {
   padding: 10px 20px;
   font-size: 14px;
 }
+
+.form-control2 {
+  background: #f4f7fa;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
 .custom-select:focus,
 .form-control:focus {
   background: #f4f7fa;

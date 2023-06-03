@@ -958,7 +958,7 @@
     <Content Include="Areas\CMS\Views\Accounts\Details.cshtml" />
     <Content Include="Areas\CMS\Views\Accounts\Edit.cshtml" />
     <Content Include="Areas\CMS\Views\Accounts\Index.cshtml" />
-    <Content Include="Areas\CMS\Views\Accounts\Login.cshtml" />
+    <Content Include="Areas\CMS\Views\Home\Login.cshtml" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
     <Content Include="Scripts\ckeditor\config.js" />

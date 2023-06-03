@@ -25,7 +25,7 @@ namespace IAAITW.Areas.CMS.Controllers
 
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
-            return View(db.Knowledges.OrderBy(p => p.Id).ToPagedList(currentPageIndex, DefaultPageSize));
+            return View(db.Knowledges.OrderByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         // GET: CMS/Knowledge/Details/5

@@ -246,6 +246,7 @@
     <Compile Include="Areas\CMS\Controllers\AccountsController.cs" />
     <Compile Include="Areas\CMS\Controllers\HomeController.cs" />
     <Compile Include="Areas\CMS\Controllers\KnowledgeController.cs" />
+    <Compile Include="Areas\CMS\Controllers\NewsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -270,12 +271,21 @@
     <Compile Include="Migrations\202306030535422_addKnowledge.Designer.cs">
       <DependentUpon>202306030535422_addKnowledge.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306030911535_addNews.cs" />
+    <Compile Include="Migrations\202306030911535_addNews.Designer.cs">
+      <DependentUpon>202306030911535_addNews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306030943089_addNewsCover.cs" />
+    <Compile Include="Migrations\202306030943089_addNewsCover.Designer.cs">
+      <DependentUpon>202306030943089_addNewsCover.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\CMSAccount.cs" />
     <Compile Include="Models\CMSIdentity.cs" />
     <Compile Include="Models\IaaiTwDb.cs" />
     <Compile Include="Models\Knowledge.cs" />
+    <Compile Include="Models\News.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1274,6 +1284,11 @@
     <Content Include="Areas\CMS\Views\Knowledge\Edit.cshtml" />
     <Content Include="Areas\CMS\Views\Knowledge\Index.cshtml" />
     <Content Include="Areas\CMS\Views\Knowledge\Delete.cshtml" />
+    <Content Include="Areas\CMS\Views\News\Create.cshtml" />
+    <Content Include="Areas\CMS\Views\News\Delete.cshtml" />
+    <Content Include="Areas\CMS\Views\News\Details.cshtml" />
+    <Content Include="Areas\CMS\Views\News\Edit.cshtml" />
+    <Content Include="Areas\CMS\Views\News\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1352,6 +1367,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306030535422_addKnowledge.resx">
       <DependentUpon>202306030535422_addKnowledge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306030911535_addNews.resx">
+      <DependentUpon>202306030911535_addNews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306030943089_addNewsCover.resx">
+      <DependentUpon>202306030943089_addNewsCover.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

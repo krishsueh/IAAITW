@@ -245,6 +245,7 @@
     <Compile Include="Areas\CMS\Controllers\ArticleController.cs" />
     <Compile Include="Areas\CMS\Controllers\AccountsController.cs" />
     <Compile Include="Areas\CMS\Controllers\HomeController.cs" />
+    <Compile Include="Areas\CMS\Controllers\KnowledgeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -265,11 +266,16 @@
     <Compile Include="Migrations\202306010833238_addService.Designer.cs">
       <DependentUpon>202306010833238_addService.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306030535422_addKnowledge.cs" />
+    <Compile Include="Migrations\202306030535422_addKnowledge.Designer.cs">
+      <DependentUpon>202306030535422_addKnowledge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\CMSAccount.cs" />
     <Compile Include="Models\CMSIdentity.cs" />
     <Compile Include="Models\IaaiTwDb.cs" />
+    <Compile Include="Models\Knowledge.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1263,6 +1269,11 @@
     <Content Include="Areas\CMS\Views\Article\Licenses.cshtml" />
     <Content Include="Areas\CMS\Views\Article\Refer.cshtml" />
     <Content Include="Areas\CMS\Views\Article\Survey.cshtml" />
+    <Content Include="Areas\CMS\Views\Knowledge\Create.cshtml" />
+    <Content Include="Areas\CMS\Views\Knowledge\Details.cshtml" />
+    <Content Include="Areas\CMS\Views\Knowledge\Edit.cshtml" />
+    <Content Include="Areas\CMS\Views\Knowledge\Index.cshtml" />
+    <Content Include="Areas\CMS\Views\Knowledge\Delete.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1338,6 +1349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306010833238_addService.resx">
       <DependentUpon>202306010833238_addService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306030535422_addKnowledge.resx">
+      <DependentUpon>202306030535422_addKnowledge.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

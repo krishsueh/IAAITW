@@ -1,0 +1,54 @@
+﻿@using MvcPaging
+@model MvcPaging.IPagedList<IAAITW.Models.Knowledge>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/CMS/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card-header">
+    <h5>知識庫列表</h5>
+</div>
+
+<div class="card-block">
+    <p>
+        @Html.ActionLink("新增知識庫", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Content)
+            </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ReleaseDate.ToString("yyyy-MM-dd")
+                </td>
+                <td>
+                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.Title).ToString(), "Edit", new { id = item.Id })
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>*@
+                <td>
+                    @Html.ActionLink("編輯", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+    </div>
+</div>

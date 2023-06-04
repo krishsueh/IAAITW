@@ -40,6 +40,7 @@ namespace IAAITW.Areas.CMS.Controllers
                 {
                     About addingAbout = new About();
                     addingAbout.AboutUs = editor.AboutUs;
+
                     db.Abouts.Add(addingAbout);
                     db.SaveChanges();
                     return RedirectToAction("AboutUs");

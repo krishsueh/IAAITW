@@ -60,7 +60,7 @@ namespace IAAITW.Controllers
                 ViewBag.Msg = "帳號或密碼有誤";
                 return View();
             }
-         
+
         }
 
         // POST: Member/Logout
@@ -137,6 +137,8 @@ namespace IAAITW.Controllers
                             string newFileName = member.Account + "_" + member.Name + extension;
                             var path = Path.Combine(Server.MapPath("~/upload/membership"), newFileName);
                             file.SaveAs(path);
+
+                            member.MembershipFile = newFileName;
                         }
                         else
                         {
@@ -206,7 +208,7 @@ namespace IAAITW.Controllers
 
                 db.Members.Add(member);
                 db.SaveChanges();
-                
+
                 //return RedirectToAction("Login");
                 //成功註冊後不直接導向 Login 頁面，而是先跳彈窗再導向
                 ViewBag.RegisterOk = "註冊成功，請重新登入";
@@ -304,17 +306,14 @@ namespace IAAITW.Controllers
                             string newFileName = member.Account + "_" + member.Name + extension;
                             var path = Path.Combine(Server.MapPath("~/upload/membership"), newFileName);
                             file.SaveAs(path);
+
+                            member.MembershipFile = newFileName;
                         }
                         else
                         {
                             ViewBag.Msg = "檔案格式不符合";
                             return View(member);
                         }
-                    }
-                    else
-                    {
-                        ViewBag.Msg = "請上傳會員證影本，如非國際會籍，請取消勾選";
-                        return View(member);
                     }
                 }
                 else

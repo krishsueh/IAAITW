@@ -2,12 +2,11 @@
 
 @{
     ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/Member_Layout.cshtml";
+    Layout = "~/Views/Shared/LoginRegister_Layout.cshtml";
 }
 
 <h2 class="page-title">會員註冊</h2>
 <hr class="botmargin-min">
-
 @using (Html.BeginForm("Register", "Member", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -108,8 +107,8 @@
             <label class="col-sm-2 control-label">國際會籍：</label>
             <div class="col-sm-7">
                 @Html.CheckBoxFor(model => model.InternationalMembership)
-                <span>為國際縱火調查學會之當年度有效會員，請檢附會員證影本</span>
-                <input type="file" name="file" />
+                為國際縱火調查學會之當年度有效會員，請檢附會員證影本
+                <input type="file" name="file" style="display: inline-block" />
                 <div class="text-danger" style="display: inline-block">@ViewBag.Msg</div>
             </div>
         </div>
@@ -274,19 +273,20 @@
             </div>
         </div>
     </div>
-
     <script>
-    @if (!string.IsNullOrEmpty(ViewBag.RegisterOk) && !string.IsNullOrEmpty(ViewBag.RedirectUrl))
-    {
-        <text>
-        window.onload = function() {
-            alert('@ViewBag.RegisterOk');
-            window.location.href = '@ViewBag.RedirectUrl';
+        @if (!string.IsNullOrEmpty(ViewBag.RegisterOk) && !string.IsNullOrEmpty(ViewBag.RedirectUrl))
+        {
+            <text>
+            window.onload = function() {
+                alert('@ViewBag.RegisterOk');
+                window.location.href = '@ViewBag.RedirectUrl';
+            }
+            </text>
         }
-        </text>
-    }
     </script>
 }
+
+
 
 
 

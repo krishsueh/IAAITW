@@ -298,6 +298,10 @@
     <Compile Include="Migrations\202306050946521_amendMenber.Designer.cs">
       <DependentUpon>202306050946521_amendMenber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306060808353_addMembershipFile.cs" />
+    <Compile Include="Migrations\202306060808353_addMembershipFile.Designer.cs">
+      <DependentUpon>202306060808353_addMembershipFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\CMSAccount.cs" />
@@ -1488,6 +1492,7 @@
     <Content Include="Views\Member\Register.cshtml" />
     <Content Include="Views\Member\Edit.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Shared\LoginRegister_Layout.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1652,6 +1657,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306050946521_amendMenber.resx">
       <DependentUpon>202306050946521_amendMenber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306060808353_addMembershipFile.resx">
+      <DependentUpon>202306060808353_addMembershipFile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

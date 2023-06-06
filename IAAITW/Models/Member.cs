@@ -66,6 +66,10 @@ namespace IAAITW.Models
         [Display(Name = "國際會籍")]
         public bool InternationalMembership { get; set; }
 
+        [Display(Name = "會員證影本")]
+        [MaxLength(200)]
+        public string MembershipFile { get; set; }
+
         [Required(ErrorMessage = "{0}必填")]
         [MaxLength(50)]
         [Display(Name = "現職單位")]

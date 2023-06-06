@@ -55,7 +55,7 @@ namespace IAAITW.Areas.CMS.Controllers
         }
 
         // GET: CMS/Accounts/Create
-        //[Authorize(Roles = "最高管理者")]
+        [Authorize(Roles = "最高管理者")]
         public ActionResult Create()
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
@@ -69,7 +69,7 @@ namespace IAAITW.Areas.CMS.Controllers
 
         // POST: CMS/Accounts/Create
         [HttpPost]
-        //[Authorize(Roles = "最高管理者")]
+        [Authorize(Roles = "最高管理者")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CMSAccount account, HttpPostedFileBase file)
         {

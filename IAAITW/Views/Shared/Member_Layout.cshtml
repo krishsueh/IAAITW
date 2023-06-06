@@ -1,4 +1,24 @@
-﻿<!DOCTYPE html>
+﻿@{
+    //清除快取，防止回到上一頁
+    Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+
+    //取得驗證票
+    FormsIdentity identity = (FormsIdentity)HttpContext.Current.User.Identity;
+    FormsAuthenticationTicket ticket = identity.Ticket;
+
+    // 取得夾帶在驗證票中的使用者資訊
+    string userData = ticket.UserData;
+
+    // 將夾帶的資料拆開
+    string[] userDataParts = userData.Split(';');
+
+    // 取得使用者資訊
+    string id = userDataParts[0];
+}
+
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -118,7 +138,8 @@
                                     <li class="dropdown">
                                         <a href="member.html" class="dropdown-toggle" data-toggle="dropdown" title="會員專區">會員專區 <i class="fa fa-angle-down"></i></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li>@Html.ActionLink("會員登入", "Login", "Member")</li>
+                                            <li>@Html.ActionLink("修改個人資料", "Edit", "Member",new { id = id }, null)</li>
+                                            <li>@Html.ActionLink("登出", "Logout", "Member")</li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
@@ -201,7 +222,8 @@
                             <div class="widget">
                                 <h2 class="widget-title"><i class="fa fa-folder-open-o">&nbsp;</i>會員專區</h2>
                                 <ul class="arrow nav nav-tabs nav-stacked">
-                                    <li>@Html.ActionLink("會員登入", "Login", "Member")</li>
+                                    <li>@Html.ActionLink("修改個人資料", "Edit", "Member", new { id = id }, null)</li>
+                                    <li>@Html.ActionLink("登出", "Logout", "Member")</li>
                                 </ul>
                             </div><!-- Categories end -->
 

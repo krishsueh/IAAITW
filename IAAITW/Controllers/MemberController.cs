@@ -1,12 +1,15 @@
 ﻿using IAAITW.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace IAAITW.Controllers
 {
@@ -14,7 +17,7 @@ namespace IAAITW.Controllers
     {
         private IaaiTwDb db = new IaaiTwDb();
 
-        // GET: Members/Login
+        // GET: Member/Login
         public ActionResult Login()
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
@@ -23,6 +26,63 @@ namespace IAAITW.Controllers
             ViewBag.Breadcrumb = breadcrumb;
 
             return View();
+        }
+
+        // POST: Member/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string account, string password)
+        {
+            if (String.IsNullOrEmpty(account) || String.IsNullOrEmpty(password))
+            {
+                ViewBag.Msg = "帳號和密碼皆為必填";
+                return View();
+            }
+
+            password = BitConverter.ToString(MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(password))).Replace("-", null);
+
+            Member findMember = db.Members
+                    .Where(c => c.Account == account.ToLower().Trim() && c.Password == password)
+                    .FirstOrDefault();
+
+            if (findMember != null)
+            {
+                //宣告驗證票要夾帶的資料 (用;區隔)
+                string userData = findMember.Id + ";" + findMember.Account + ";" + findMember.Name + ";" + findMember.Email + ";" + findMember.MemberTypes;
+
+                //設定驗證票(夾帶資料，cookie 命名)
+                SetAuthenTicket(userData, findMember.Name);
+
+                return RedirectToAction("Index", "Member");
+            }
+            else
+            {
+                ViewBag.Msg = "帳號或密碼有誤";
+                return View();
+            }
+         
+        }
+
+        // POST: Member/Logout
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+
+            //清除所有的 session
+            Session.Abandon();
+            Session.RemoveAll();
+
+            //建立一個同名的 Cookie 來覆蓋原本的 Cookie
+            HttpCookie cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+            cookie1.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie1);
+
+            //建立 ASP.NET 的 Session Cookie 同樣是為了覆蓋
+            HttpCookie cookie2 = new HttpCookie("ASP.NET_SessionId", "");
+            cookie2.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie2);
+
+            return RedirectToAction("Login", "Member");
         }
 
         // GET: Member/Register
@@ -165,5 +225,163 @@ namespace IAAITW.Controllers
             }
             return true;
         }
+
+        //設定驗證票
+        private void SetAuthenTicket(string userData, string userId)
+        {
+            //宣告一個驗證票
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userId, DateTime.Now, DateTime.Now.AddHours(3), false, userData);
+            //加密驗證票
+            string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+            //建立 Cookie
+            HttpCookie authenticationCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+            //將 Cookie 寫入回應
+            Response.Cookies.Add(authenticationCookie);
+        }
+
+
+
+
+
+
+
+
+
+
+
+        // GET: Member
+        [Authorize]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: Member/Edit/5
+        [Authorize]
+        public ActionResult Edit(int? id)
+        {
+            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "修改個人資料", Url = "#" });
+            ViewBag.Breadcrumb = breadcrumb;
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Member member = db.Members.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(member);
+        }
+
+        // POST: Member/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Member member, string newPassword, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!String.IsNullOrEmpty(newPassword))
+                {
+                    // 密碼加密
+                    member.Password = BitConverter
+                        .ToString(MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(newPassword))).Replace("-", null);
+                }
+
+                // 國際會籍
+                if (member.InternationalMembership == true)
+                {
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        string fileName = Path.GetFileName(file.FileName);
+                        string extension = Path.GetExtension(fileName);
+
+                        if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif" || extension == ".pdf")
+                        {
+                            string newFileName = member.Account + "_" + member.Name + extension;
+                            var path = Path.Combine(Server.MapPath("~/upload/membership"), newFileName);
+                            file.SaveAs(path);
+                        }
+                        else
+                        {
+                            ViewBag.Msg = "檔案格式不符合";
+                            return View(member);
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.Msg = "請上傳會員證影本，如非國際會籍，請取消勾選";
+                        return View(member);
+                    }
+                }
+                else
+                {
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        ViewBag.Msg = "如為國際會籍，請勾選確認框後上傳會員證影本";
+                        return View(member);
+                    }
+                }
+
+                // 服務經歷年月判斷
+                if (!ValidateDate(member.StartYear1, member.StartMonth1, member.EndYear1, member.EndMonth1))
+                {
+                    ViewBag.MsgDate1 = "起訖日期有誤";
+                    return View(member);
+                }
+
+                if (member.PastEmployer2 == null)
+                {
+                    member.PastJobTitle2 = null;
+                    member.StartYear2 = null;
+                    member.EndYear2 = null;
+                    member.StartMonth2 = null;
+                    member.EndMonth2 = null;
+                }
+                else if (!ValidateDate(member.StartYear2, member.StartMonth2, member.EndYear2, member.EndMonth2))
+                {
+                    ViewBag.MsgDate2 = "起訖日期有誤";
+                    return View(member);
+                }
+                else
+                {
+                    ViewBag.MsgDate2 = "請填寫完整起訖日期";
+                    return View(member);
+                }
+
+                if (member.PastEmployer3 == null)
+                {
+                    member.PastJobTitle3 = null;
+                    member.StartYear3 = null;
+                    member.EndYear3 = null;
+                    member.StartMonth3 = null;
+                    member.EndMonth3 = null;
+                }
+                else if (!ValidateDate(member.StartYear3, member.StartMonth3, member.EndYear3, member.EndMonth3))
+                {
+                    ViewBag.MsgDate3 = "起訖日期有誤";
+                    return View(member);
+                }
+                else
+                {
+                    ViewBag.MsgDate3 = "請填寫完整起訖日期";
+                    return View(member);
+                }
+
+                db.Entry(member).State = EntityState.Modified;
+                db.SaveChanges();
+
+                //return RedirectToAction("Index");
+                //成功註冊後不直接導向，而是先跳彈窗再導向
+                ViewBag.EditOk = "修改個人資料成功";
+                ViewBag.RedirectUrl = Url.Action("Edit");
+                return View();
+            }
+            return View(member);
+        }
+
     }
 }

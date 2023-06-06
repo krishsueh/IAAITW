@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using IAAITW.Models;
@@ -57,14 +60,45 @@ namespace IAAITW.Areas.CMS.Controllers
         }
 
         // POST: CMS/Members/Create
-        // 若要免於大量指派 (overposting) 攻擊，請啟用您要繫結的特定屬性，
-        // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Account,Password,Name,Gender,BirthDate,MemberTypes,Tel,Mobile,Address,Email,InternationalMembership,CurrentEmployer,JobTitle,HighestEducation,PastEmployer1,PastJobTitle1,StartYear1,StartMonth1,EndYear1,EndMonth1,PastEmployer2,PastJobTitle2,StartYear2,StartMonth2,EndYear2,EndMonth2,PastEmployer3,PastJobTitle3,StartYear3,StartMonth3,EndYear3,EndMonth3")] Member member)
+        public ActionResult Create(Member member, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                // 確認帳號是否已存在
+                Member findMember = db.Members
+                    .Where(c => c.Account == member.Account.ToLower().Trim())
+                    .FirstOrDefault();
+                if (findMember != null)
+                {
+                    ViewBag.MsgAccount = "此帳號已存在";
+                    return View(member);
+                }
+
+                // 密碼加密
+                member.Password = BitConverter
+                    .ToString(MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(member.Password))).Replace("-", null);
+
+                // 會員證影本
+                if (file != null && file.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(file.FileName);
+                    string extension = Path.GetExtension(fileName);
+
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif" || extension == ".pdf")
+                    {
+                        string newFileName = member.Account + "_" + member.Name + extension;
+                        var path = Path.Combine(Server.MapPath("~/upload/membership"), newFileName);
+                        file.SaveAs(path);
+                    }
+                    else
+                    {
+                        ViewBag.Msg = "檔案格式不符合";
+                        return View(member);
+                    }
+                }
+
                 db.Members.Add(member);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -249,6 +249,7 @@
     <Compile Include="Areas\CMS\Controllers\MembersController.cs" />
     <Compile Include="Areas\CMS\Controllers\NewsController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -284,6 +285,18 @@
     <Compile Include="Migrations\202306031103510_addMember.cs" />
     <Compile Include="Migrations\202306031103510_addMember.Designer.cs">
       <DependentUpon>202306031103510_addMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306050636148_amendMemberTotalWork.cs" />
+    <Compile Include="Migrations\202306050636148_amendMemberTotalWork.Designer.cs">
+      <DependentUpon>202306050636148_amendMemberTotalWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306050941323_amendMember.cs" />
+    <Compile Include="Migrations\202306050941323_amendMember.Designer.cs">
+      <DependentUpon>202306050941323_amendMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306050946521_amendMenber.cs" />
+    <Compile Include="Migrations\202306050946521_amendMenber.Designer.cs">
+      <DependentUpon>202306050946521_amendMenber.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
@@ -1470,6 +1483,9 @@
     <Content Include="Views\Shared\About_Layout.cshtml" />
     <Content Include="Views\Shared\News_Layout.cshtml" />
     <Content Include="Views\Shared\Service_Layout.cshtml" />
+    <Content Include="Views\Shared\Member_Layout.cshtml" />
+    <Content Include="Views\Member\Login.cshtml" />
+    <Content Include="Views\Member\Register.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1625,6 +1641,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306031103510_addMember.resx">
       <DependentUpon>202306031103510_addMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306050636148_amendMemberTotalWork.resx">
+      <DependentUpon>202306050636148_amendMemberTotalWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306050941323_amendMember.resx">
+      <DependentUpon>202306050941323_amendMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306050946521_amendMenber.resx">
+      <DependentUpon>202306050946521_amendMenber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

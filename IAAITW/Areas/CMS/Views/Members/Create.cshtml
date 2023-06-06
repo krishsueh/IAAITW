@@ -10,7 +10,7 @@
 </div>
 
 <div class="card-block">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Create", "Members", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -20,6 +20,7 @@
                 <span class="text-danger">*</span>
                 @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "control-label col-md-2" })
                 @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+                <div class="text-danger" style="display: inline-block">@ViewBag.MsgAccount</div>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
@@ -31,7 +32,6 @@
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-
                 </div>
             </div>
 
@@ -41,7 +41,6 @@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-
                 </div>
             </div>
 
@@ -113,7 +112,10 @@
                 <div class="col-md-10">
                     @Html.CheckBoxFor(model => model.InternationalMembership)
                     <span>為國際縱火調查學會之當年度有效會員，請檢附會員證影本</span>
-                    @Html.ValidationMessageFor(model => model.InternationalMembership, "", new { @class = "text-danger" })
+                    <div>
+                        <input type="file" name="file" />
+                        <div class="text-danger" style="display: inline-block">@ViewBag.Msg</div>
+                    </div>
                 </div>
             </div>
 
@@ -253,6 +255,19 @@
                     @Html.ValidationMessageFor(model => model.EndYear3, "", new { @class = "text-danger" })
                     @Html.EditorFor(model => model.EndMonth3, new { htmlAttributes = new { @class = "form-control2", placeholder = "月" } })
                     @Html.ValidationMessageFor(model => model.EndMonth3, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                @Html.Label("相關年資合計", new { @class = "col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TotalYear, new { htmlAttributes = new { @class = "form-control2", placeholder = "年" } })
+                    @Html.EditorFor(model => model.TotalMonth, new { htmlAttributes = new { @class = "form-control2", placeholder = "月" } })
+                </div>
+                <div class="col-md-10">
+                    @Html.ValidationMessageFor(model => model.TotalYear, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.TotalMonth, "", new { @class = "text-danger" })
                 </div>
             </div>
 

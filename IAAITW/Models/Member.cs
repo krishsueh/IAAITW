@@ -146,5 +146,13 @@ namespace IAAITW.Models
 
         [Display(Name = "結束月3")]
         public int? EndMonth3 { get; set; }
+
+        [Required(ErrorMessage = "{0}必填")]
+        [Display(Name = "合計年資(年)")]
+        public int TotalYear { get; set; }
+
+        [Required(ErrorMessage = "{0}必填")]
+        [Display(Name = "合計年資(月)")]
+        public int TotalMonth { get; set; }
     }
 }

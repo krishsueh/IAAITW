@@ -1,4 +1,26 @@
-﻿<!DOCTYPE html>
+﻿@{
+    //清除快取，防止回到上一頁
+    Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+
+    //取得驗證票
+    FormsIdentity identity = (FormsIdentity)HttpContext.Current.User.Identity;
+    FormsAuthenticationTicket ticket = identity.Ticket;
+
+    // 取得夾帶在驗證票中的使用者資訊
+    string userData = ticket.UserData;
+
+    // 將夾帶的資料拆開
+    string[] userDataParts = userData.Split(';');
+
+    // 取得使用者資訊
+    string id = userDataParts[0];
+    string account = userDataParts[1];
+    string name = userDataParts[2];
+}
+
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -6,7 +28,8 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>國際縱火調查人員協會臺灣分會</title>
-
+    @Scripts.Render("~/bundles/ckeditor")
+    @Scripts.Render("~/bundles/ckfinder")
     <!-- Mobile Specific Metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -118,7 +141,7 @@
                                     <li class="dropdown">
                                         <a href="member.html" class="dropdown-toggle" data-toggle="dropdown" title="會員專區">會員專區 <i class="fa fa-angle-down"></i></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li>@Html.ActionLink("會員登入", "Login", "Member")</li>
+                                            <li>@Html.ActionLink("討論區", "Index", "Forum")</li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
@@ -199,13 +222,9 @@
 
                         <div class="sidebar sidebar-right">
                             <div class="widget">
-                                <h2 class="widget-title"><i class="fa fa-folder-open-o">&nbsp;</i>關於我們</h2>
+                                <h2 class="widget-title"><i class="fa fa-folder-open-o">&nbsp;</i>聯絡我們</h2>
                                 <ul class="arrow nav nav-tabs nav-stacked">
-                                    <li>@Html.ActionLink("關於我們", "AboutUs", "Article")</li>
-                                    <li>@Html.ActionLink("組織架構", "Organization", "Article")</li>
-                                    <li>@Html.ActionLink("沿革", "History", "Article")</li>
-                                    <li>@Html.ActionLink("配證會員", "Member", "Article")</li>
-                                    <li>@Html.ActionLink("專家介紹", "Expert", "Article")</li>
+                                    <li>@Html.ActionLink("聯絡我們", "Index", "Contact")</li>
                                 </ul>
                             </div><!-- Categories end -->
 
@@ -213,9 +232,6 @@
                     </div><!-- Sidebar Col end -->
 
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-
-                        @*<h2 class="page-title">協會介紹</h2>
-                            <hr class="botmargin-min">*@
 
                         <!-- 內容開始 -->
 

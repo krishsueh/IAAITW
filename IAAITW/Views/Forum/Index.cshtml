@@ -1,0 +1,67 @@
+﻿@using MvcPaging
+@model MvcPaging.IPagedList<IAAITW.Models.Board>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Member_Layout.cshtml";
+}
+
+<h2 class="page-title">討論區</h2>
+<hr class="botmargin-min">
+
+<style>
+    .respon {
+        margin: 20px auto;
+        display: inline-block;
+        padding: 3px 8px;
+        background: #b2b2b2;
+        color: white;
+        border-radius: 2px;
+    }
+</style>
+<a class="respon" href="/Forum/Create">張貼文章</a>
+<table class="table table-striped career-table download-table">
+    <thead>
+        <tr>
+            <th> <span class="text-left">@Html.DisplayNameFor(model => model.FirstOrDefault().Subject)</span></th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Author)</th>
+            <th>最新回覆人</th>
+            <th>回覆數</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <span class="text-left">
+                        <a href="@Url.Action("Details", "Forum", new { id = item.SubjectId })">@item.Subject</a>
+                    </span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                    <br />
+                    @item.PostDate.ToString("yyyy-MM-dd")
+                </td>
+                <td>
+                    @{
+                        var replyer = item.BoardReplies.LastOrDefault()?.Replyer;
+                        var replyDate = item.BoardReplies.LastOrDefault()?.ReplyDate.ToString("yyyy-MM-dd");
+                    }
+
+                    @replyer<br>@replyDate
+                </td>
+                <td>
+                    @item.BoardReplies.Count
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="paging text-center">
+    <div class="pagination">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+    </div>
+</div>
+

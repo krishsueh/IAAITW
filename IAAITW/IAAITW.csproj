@@ -249,6 +249,7 @@
     <Compile Include="Areas\CMS\Controllers\MembersController.cs" />
     <Compile Include="Areas\CMS\Controllers\NewsController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -302,8 +303,22 @@
     <Compile Include="Migrations\202306060808353_addMembershipFile.Designer.cs">
       <DependentUpon>202306060808353_addMembershipFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306060918061_addForum.cs" />
+    <Compile Include="Migrations\202306060918061_addForum.Designer.cs">
+      <DependentUpon>202306060918061_addForum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306061337172_resetForum.cs" />
+    <Compile Include="Migrations\202306061337172_resetForum.Designer.cs">
+      <DependentUpon>202306061337172_resetForum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306061349299_resetBoard.cs" />
+    <Compile Include="Migrations\202306061349299_resetBoard.Designer.cs">
+      <DependentUpon>202306061349299_resetBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
+    <Compile Include="Models\Board.cs" />
+    <Compile Include="Models\BoardReply.cs" />
     <Compile Include="Models\CMSAccount.cs" />
     <Compile Include="Models\CMSIdentity.cs" />
     <Compile Include="Models\EnumList.cs" />
@@ -1493,6 +1508,10 @@
     <Content Include="Views\Member\Edit.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Shared\LoginRegister_Layout.cshtml" />
+    <Content Include="Views\Forum\Index.cshtml" />
+    <Content Include="Views\Forum\Create.cshtml" />
+    <Content Include="Views\Forum\Details.cshtml" />
+    <Content Include="Views\Forum\CreateRe.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1603,7 +1622,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
@@ -1660,6 +1678,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306060808353_addMembershipFile.resx">
       <DependentUpon>202306060808353_addMembershipFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306060918061_addForum.resx">
+      <DependentUpon>202306060918061_addForum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306061337172_resetForum.resx">
+      <DependentUpon>202306061337172_resetForum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306061349299_resetBoard.resx">
+      <DependentUpon>202306061349299_resetBoard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

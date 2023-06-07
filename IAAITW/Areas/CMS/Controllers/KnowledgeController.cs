@@ -75,27 +75,6 @@ namespace IAAITW.Areas.CMS.Controllers
             return View(knowledge);
         }
 
-        //// POST: CMS/Knowledge/Create
-        //[HttpPost]
-        //[ValidateInput(false)]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(Knowledge view)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Knowledge knowledge = new Knowledge();
-        //        knowledge.ReleaseDate = DateTime.Now;
-        //        knowledge.Title = view.Title;
-        //        knowledge.Content = HttpUtility.HtmlEncode(view.Content);
-
-        //        db.Knowledges.Add(knowledge);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View(view);
-        //}
-
         // GET: CMS/Knowledge/Edit/5
         public ActionResult Edit(int? id)
         {

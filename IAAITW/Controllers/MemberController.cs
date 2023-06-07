@@ -52,8 +52,9 @@ namespace IAAITW.Controllers
 
                 //設定驗證票(夾帶資料，cookie 命名)
                 SetAuthenTicket(userData, findMember.Name);
+                Session["Name"] = findMember.Name; //留言板
 
-                return RedirectToAction("Index", "Member");
+                return RedirectToAction("Index", "Forum");
             }
             else
             {
@@ -239,23 +240,6 @@ namespace IAAITW.Controllers
             HttpCookie authenticationCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
             //將 Cookie 寫入回應
             Response.Cookies.Add(authenticationCookie);
-        }
-
-
-
-
-
-
-
-
-
-
-
-        // GET: Member
-        [Authorize]
-        public ActionResult Index()
-        {
-            return View();
         }
 
         // GET: Member/Edit/5

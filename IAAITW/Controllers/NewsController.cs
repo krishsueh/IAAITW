@@ -19,7 +19,7 @@ namespace IAAITW.Controllers
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "訊息發佈", Url = null });
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "訊息發佈", Url = Url.Action("Index", "News") });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "訊息發佈", Url = "#" });
             ViewBag.Breadcrumb = breadcrumb;
 
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
@@ -33,7 +33,7 @@ namespace IAAITW.Controllers
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "訊息發佈", Url = null });
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "訊息發佈", Url = Url.Action("Index", "News") });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "訊息發佈", Url = "#" });
             ViewBag.Breadcrumb = breadcrumb;
 
             if (id == null)

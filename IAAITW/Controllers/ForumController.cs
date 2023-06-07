@@ -61,28 +61,6 @@ namespace IAAITW.Controllers
             return View(board);
         }
 
-        //// GET: Forum/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
-        //    breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
-        //    breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "討論區", Url = "#" });
-        //    ViewBag.Breadcrumb = breadcrumb;
-
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Board board = db.Boards.Find(id);
-        //    if (board == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    return View(board);
-
-        //}
-
         // GET: Forum/Details/5
         public ActionResult Details(int? id, int? page)
         {

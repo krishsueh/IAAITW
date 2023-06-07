@@ -22,7 +22,7 @@ namespace IAAITW.Controllers
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員登入", Url = Url.Action("Login", "Member") });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員登入", Url = "#" });
             ViewBag.Breadcrumb = breadcrumb;
 
             return View();
@@ -91,7 +91,7 @@ namespace IAAITW.Controllers
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員註冊", Url = Url.Action("Register", "Member") });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員註冊", Url = "#" });
             ViewBag.Breadcrumb = breadcrumb;
 
             return View();

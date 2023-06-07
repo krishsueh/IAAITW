@@ -1,4 +1,5 @@
-﻿@model IAAITW.Models.Board
+﻿@using MvcPaging
+@model MvcPaging.IPagedList<IAAITW.Models.BoardReply>
 
 @{
     ViewBag.Title = "Details";
@@ -72,17 +73,17 @@
 <div class="post-content">
     <div class="entry-header">
         <h2 class="entry-title">
-            @Model.Subject
+            @ViewBag.Subject
         </h2>
-        <span class="postMan"> 發表人：@Model.Author</span>
+        <span class="postMan"> 發表人：@ViewBag.Author</span>
     </div><!-- header end -->
 
     <div class="postInfo">
-        <span class="post-meta-date"><i class="fa fa fa-clock-o"></i> @Model.PostDate.ToString("yyyy-MM-dd")</span>
+        <span class="post-meta-date"><i class="fa fa fa-clock-o"></i> @ViewBag.PostDate</span>
     </div>
     <div class="post-body">
         <div class="entry-content topmargin-min">
-            @Html.Raw(Model.Article)
+            @Html.Raw(ViewBag.Article)
         </div>
         <div class="tags-area clearfix">
 
@@ -90,10 +91,10 @@
     </div>
 </div><!-- post-body end -->
 
-<a class="respon" href="/Forum/CreateRe/@Model.SubjectId">回應文章</a>
+<a class="respon" href="/Forum/CreateRe/@ViewBag.SubjectId">回應文章</a>
 <div class="clear"></div>
 
-@foreach (var item in Model.BoardReplies)
+@foreach (var item in Model)
 {
     <div class="post">
         <div class="row">
@@ -116,11 +117,11 @@
     </div>
 }
 
-@*<div class="paging text-center">
+<div class="paging text-center">
     <div class="pagination">
         @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
     </div>
-</div>*@
+</div>
 
 <div class="post-footer  pull-left">
     <a onclick="history.back()" onKeyPress="history.back()" class="btn btn-primary">返回列表</a>

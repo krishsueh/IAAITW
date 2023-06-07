@@ -61,8 +61,30 @@ namespace IAAITW.Controllers
             return View(board);
         }
 
+        //// GET: Forum/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+        //    breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
+        //    breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "討論區", Url = "#" });
+        //    ViewBag.Breadcrumb = breadcrumb;
+
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Board board = db.Boards.Find(id);
+        //    if (board == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    return View(board);
+
+        //}
+
         // GET: Forum/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? page)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
@@ -73,14 +95,20 @@ namespace IAAITW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Board board = db.Boards.Find(id);
             if (board == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.SubjectId = board.SubjectId;
+            ViewBag.Subject = board.Subject;
+            ViewBag.Author = board.Author;
+            ViewBag.PostDate = board.PostDate.ToString("yyyy-MM-dd");
+            ViewBag.Article = board.Article;
 
-            return View(board);
-
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            return View(board.BoardReplies.OrderByDescending(p => p.ReplyDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         // GET: Forum/CreateRe

@@ -1512,6 +1512,8 @@
     <Content Include="Views\Forum\Create.cshtml" />
     <Content Include="Views\Forum\Details.cshtml" />
     <Content Include="Views\Forum\CreateRe.cshtml" />
+    <Content Include="Views\Article\Calendar.cshtml" />
+    <Content Include="Views\Shared\Calendar_Layout.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

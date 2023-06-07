@@ -127,5 +127,16 @@ namespace IAAITW.Controllers
 
             return View(service);
         }
+
+        // GET: Article/Calendar
+        public ActionResult Calendar()
+        {
+            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "行事曆", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協會行事曆", Url = "#" });
+            ViewBag.Breadcrumb = breadcrumb;
+
+            return View();
+        }
     }
 }

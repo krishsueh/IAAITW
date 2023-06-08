@@ -1,26 +1,4 @@
-﻿@{
-    //清除快取，防止回到上一頁
-    Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
-    Response.Cache.SetCacheability(HttpCacheability.NoCache);
-    Response.Cache.SetNoStore();
-
-    //取得驗證票
-    FormsIdentity identity = (FormsIdentity)HttpContext.Current.User.Identity;
-    FormsAuthenticationTicket ticket = identity.Ticket;
-
-    // 取得夾帶在驗證票中的使用者資訊
-    string userData = ticket.UserData;
-
-    // 將夾帶的資料拆開
-    string[] userDataParts = userData.Split(';');
-
-    // 取得使用者資訊
-    string id = userDataParts[0];
-    string account = userDataParts[1];
-    string name = userDataParts[2];
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 

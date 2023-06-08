@@ -1,0 +1,70 @@
+﻿@using MvcPaging
+@model MvcPaging.IPagedList<IAAITW.Models.Knowledge>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Knowledge_Layout.cshtml";
+}
+
+<h2 class="page-title">知識庫下載</h2>
+<hr class="botmargin-min">
+
+<style>
+    .post {
+        width: 500px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+</style>
+
+@foreach (var item in Model)
+{
+    <div class="post">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <span class="post-meta-date"><i class="fa fa fa-clock-o"></i> @item.ReleaseDate.ToString("yyyy-MM-dd")</span>
+                <div class="post-media post-image">
+                    <a href="/Knowledges/Details/@item.Id">
+                        @if (item.CoverImg != null)
+                        {
+                            <img src="@Url.Content("~/upload/knowledge_cover/" + item.CoverImg)" alt="KnowledgesCover" class="img-responsive" />
+                        }
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="post-body">
+                    <div class="entry-header">
+
+                        <h3 class="entry-title">
+                            <a href="@Url.Action("Details", "Knowledge", new { id = item.Id })">@item.Title</a>
+                        </h3>
+                        <p>
+
+                            @{
+                                string content = Html.Raw(item.Content).ToString();
+                                string truncatedContent = content.Length > 30 ? content.Substring(0, 30) + "..." : content;
+                            }
+
+                            @Html.Raw(truncatedContent)
+
+                        </p>
+
+                    </div>
+                    <!-- header end -->
+
+                    <div class="post-footer">
+                        <a href="#"></a>
+                    </div>
+
+                </div>
+                <!-- post-body end -->
+            </div>
+        </div>
+    </div>
+}
+<div class="paging text-center">
+    <div class="pagination">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+    </div>
+</div>

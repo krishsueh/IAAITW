@@ -23,8 +23,8 @@
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Content)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Content)
+                </th>*@
             <th></th>
         </tr>
 
@@ -38,8 +38,8 @@
                     @Html.ActionLink(@Html.DisplayFor(modelItem => item.Title).ToString(), "Edit", new { id = item.Id })
                 </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>*@
                 <td>
                     @Html.ActionLink("編輯", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("刪除", "Delete", new { id = item.Id })

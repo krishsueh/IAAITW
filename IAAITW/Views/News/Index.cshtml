@@ -31,7 +31,7 @@
                             <em>
                                 @{
                                     string content = Html.Raw(item.Content).ToString();
-                                    string truncatedContent = content.Length > 30 ? content.Substring(0, 50) + "..." : content;
+                                    string truncatedContent = content.Length > 50 ? content.Substring(0, 50) + "..." : content;
                                 }
 
                                 @Html.Raw(truncatedContent)

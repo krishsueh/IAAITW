@@ -41,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.Account)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.ActionLink(item.Name, "Details", new { id = item.Id })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Gender)
@@ -56,9 +56,8 @@
                     @Html.DisplayFor(modelItem => item.InternationalMembership)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("編輯", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("刪除", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }

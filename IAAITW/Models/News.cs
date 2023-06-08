@@ -28,7 +28,6 @@ namespace IAAITW.Models
 
         [Required(ErrorMessage = "{0}必填")]
         [Display(Name = "內文")]
-        [MaxLength(3000)]
         public string Content { get; set; }
     }
 }

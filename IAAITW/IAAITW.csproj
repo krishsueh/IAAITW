@@ -254,6 +254,7 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
+    <Compile Include="Controllers\KnowledgeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -318,6 +319,14 @@
     <Compile Include="Migrations\202306061349299_resetBoard.cs" />
     <Compile Include="Migrations\202306061349299_resetBoard.Designer.cs">
       <DependentUpon>202306061349299_resetBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306080735036_addKnowledgeCover.cs" />
+    <Compile Include="Migrations\202306080735036_addKnowledgeCover.Designer.cs">
+      <DependentUpon>202306080735036_addKnowledgeCover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306080754382_removeMaxLenth.cs" />
+    <Compile Include="Migrations\202306080754382_removeMaxLenth.Designer.cs">
+      <DependentUpon>202306080754382_removeMaxLenth.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
@@ -1522,6 +1531,9 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Shared\Contact_Layout.cshtml" />
     <Content Include="Views\Contact\Success.cshtml" />
+    <Content Include="Views\Shared\Knowledge_Layout.cshtml" />
+    <Content Include="Views\Knowledge\Index.cshtml" />
+    <Content Include="Views\Knowledge\Details.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1697,6 +1709,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306061349299_resetBoard.resx">
       <DependentUpon>202306061349299_resetBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306080735036_addKnowledgeCover.resx">
+      <DependentUpon>202306080735036_addKnowledgeCover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306080754382_removeMaxLenth.resx">
+      <DependentUpon>202306080754382_removeMaxLenth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -63,10 +64,31 @@ namespace IAAITW.Areas.CMS.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Knowledge knowledge)
+        public ActionResult Create(Knowledge knowledge, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                // 封面
+                if (file != null && file.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(file.FileName);
+                    string extension = Path.GetExtension(fileName);
+
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    {
+                        string newFileName = knowledge.ReleaseDate.ToString("yyyy-MM-dd") + "_" + fileName;
+                        var path = Path.Combine(Server.MapPath("~/upload/knowledge_cover"), newFileName);
+                        file.SaveAs(path);
+
+                        knowledge.CoverImg = newFileName;
+                    }
+                    else
+                    {
+                        ViewBag.Msg = "檔案格式不符合";
+                        return View(knowledge);
+                    }
+                }
+
                 db.Knowledges.Add(knowledge);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -99,10 +121,35 @@ namespace IAAITW.Areas.CMS.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Knowledge knowledge)
+        public ActionResult Edit(Knowledge knowledge, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                // 封面
+                if (file != null && file.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(file.FileName);
+                    string extension = Path.GetExtension(fileName);
+
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    {
+                        string newFileName = knowledge.ReleaseDate.ToString("yyyy-MM-dd") + "_" + fileName;
+                        var path = Path.Combine(Server.MapPath("~/upload/knowledge_cover"), newFileName);
+                        file.SaveAs(path);
+
+                        knowledge.CoverImg = newFileName;
+                    }
+                    else
+                    {
+                        ViewBag.Msg = "檔案格式不符合";
+                        return View(knowledge);
+                    }
+                }
+                else
+                {
+                    knowledge.CoverImg = db.Knowledges.Where(x => x.Id == knowledge.Id).Select(x => x.CoverImg).FirstOrDefault();
+                }
+
                 db.Entry(knowledge).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

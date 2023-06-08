@@ -77,7 +77,7 @@ namespace IAAITW.Areas.CMS.Controllers
 
                     if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
                     {
-                        string newFileName = news.ReleaseDate.ToString("yyyy-MM-dd") + "_" + fileName + extension;
+                        string newFileName = news.ReleaseDate.ToString("yyyy-MM-dd") + "_" + fileName;
                         var path = Path.Combine(Server.MapPath("~/upload/news_cover"), newFileName);
                         file.SaveAs(path);
 
@@ -130,7 +130,7 @@ namespace IAAITW.Areas.CMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                // 個人頭像
+                // 封面
                 if (file != null && file.ContentLength > 0)
                 {
                     string fileName = Path.GetFileName(file.FileName);

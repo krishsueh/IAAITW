@@ -14,6 +14,10 @@ namespace IAAITW.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Display(Name = "封面")]
+        [MaxLength(100)]
+        public string CoverImg { get; set; }
+
         [Display(Name = "發布日期")]
         public DateTime ReleaseDate { get; set; }
 
@@ -24,7 +28,6 @@ namespace IAAITW.Models
 
         [Required(ErrorMessage = "{0}必填")]
         [Display(Name = "內文")]
-        [MaxLength(3000)]
         public string Content { get; set; }
     }
 }

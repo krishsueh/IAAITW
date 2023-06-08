@@ -47,12 +47,10 @@ namespace IAAITW.Controllers
 
             if (findMember != null)
             {
-                //宣告驗證票要夾帶的資料 (用;區隔)
-                string userData = findMember.Id + ";" + findMember.Account + ";" + findMember.Name + ";" + findMember.Email + ";" + findMember.MemberTypes;
-
-                //設定驗證票(夾帶資料，cookie 命名)
-                SetAuthenTicket(userData, findMember.Name);
-                Session["Name"] = findMember.Name; //留言板
+                Session["Id"] = findMember.Id;
+                Session["Account"] = findMember.Account;
+                Session["Name"] = findMember.Name;
+                Session["Login"] = "OK";
 
                 return RedirectToAction("Index", "Forum");
             }
@@ -229,21 +227,7 @@ namespace IAAITW.Controllers
             return true;
         }
 
-        //設定驗證票
-        private void SetAuthenTicket(string userData, string userId)
-        {
-            //宣告一個驗證票
-            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userId, DateTime.Now, DateTime.Now.AddHours(3), false, userData);
-            //加密驗證票
-            string encryptedTicket = FormsAuthentication.Encrypt(ticket);
-            //建立 Cookie
-            HttpCookie authenticationCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-            //將 Cookie 寫入回應
-            Response.Cookies.Add(authenticationCookie);
-        }
-
         // GET: Member/Edit/5
-        [Authorize]
         public ActionResult Edit(int? id)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
@@ -253,7 +237,7 @@ namespace IAAITW.Controllers
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Login");
             }
             Member member = db.Members.Find(id);
             if (member == null)

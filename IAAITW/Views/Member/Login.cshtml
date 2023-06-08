@@ -11,7 +11,8 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal comments-form">
+    <div class="form-horizontal">
+        <h3 class="title-normal">請輸入您的帳號及密碼</h3>
         <div class="form-group">
             <label class="col-sm-2 control-label">帳　號：</label>
             <div class="col-sm-8">
@@ -26,7 +27,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div>
             <label class="col-sm-2 control-label"></label>
             <div class="col-sm-8">
                 <div class="text-danger">@ViewBag.Msg</div>

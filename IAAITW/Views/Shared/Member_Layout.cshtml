@@ -3,21 +3,6 @@
     Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
     Response.Cache.SetCacheability(HttpCacheability.NoCache);
     Response.Cache.SetNoStore();
-
-    //取得驗證票
-    FormsIdentity identity = (FormsIdentity)HttpContext.Current.User.Identity;
-    FormsAuthenticationTicket ticket = identity.Ticket;
-
-    // 取得夾帶在驗證票中的使用者資訊
-    string userData = ticket.UserData;
-
-    // 將夾帶的資料拆開
-    string[] userDataParts = userData.Split(';');
-
-    // 取得使用者資訊
-    string id = userDataParts[0];
-    string account = userDataParts[1];
-    string name = userDataParts[2];
 }
 
 <!DOCTYPE html>
@@ -225,7 +210,7 @@
                                 <h2 class="widget-title"><i class="fa fa-folder-open-o">&nbsp;</i>會員專區</h2>
                                 <ul class="arrow nav nav-tabs nav-stacked">
                                     <li>@Html.ActionLink("討論區", "Index", "Forum")</li>
-                                    <li>@Html.ActionLink("修改個人資料", "Edit", "Member", new { id = id }, null)</li>
+                                    <li>@Html.ActionLink("修改個人資料", "Edit", "Member", new { id = Session["Id"] }, null)</li>
                                     <li>@Html.ActionLink("登出", "Logout", "Member")</li>
                                 </ul>
                             </div><!-- Categories end -->

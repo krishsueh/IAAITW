@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace IAAITW.Controllers
 {
-    [Authorize]
     public class ForumController : Controller
     {
         private IaaiTwDb db = new IaaiTwDb();
@@ -18,6 +17,11 @@ namespace IAAITW.Controllers
         // GET: Forum
         public ActionResult Index(int? page)
         {
+            if (Session["Login"] == null || Session["Login"].ToString() != "OK")
+            {
+                return RedirectToAction("Login", "Member");
+            }
+
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "討論區", Url = "#" });
@@ -32,12 +36,19 @@ namespace IAAITW.Controllers
         // GET: Forum/Create
         public ActionResult Create()
         {
-            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "討論區", Url = "#" });
-            ViewBag.Breadcrumb = breadcrumb;
+            if (Session["Login"] != null && Session["Login"].ToString() == "OK")
+            {
+                var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
+                breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
+                breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "討論區", Url = "#" });
+                ViewBag.Breadcrumb = breadcrumb;
 
-            return View();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Member");
+            }
         }
 
         // POST: Forum/Create
@@ -64,6 +75,11 @@ namespace IAAITW.Controllers
         // GET: Forum/Details/5
         public ActionResult Details(int? id, int? page)
         {
+            if (Session["Login"] == null || Session["Login"].ToString() != "OK")
+            {
+                return RedirectToAction("Login", "Member");
+            }
+
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "討論區", Url = "#" });
@@ -71,7 +87,7 @@ namespace IAAITW.Controllers
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Login", "Member");
             }
 
             Board board = db.Boards.Find(id);
@@ -92,6 +108,11 @@ namespace IAAITW.Controllers
         // GET: Forum/CreateRe
         public ActionResult CreateRe(int id)
         {
+            if (Session["Login"] == null || Session["Login"].ToString() != "OK")
+            {
+                return RedirectToAction("Login", "Member");
+            }
+
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "討論區", Url = "#" });

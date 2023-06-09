@@ -25,9 +25,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Content)
-                </th>*@
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().GoTop)
+            </th>
             <th></th>
         </tr>
 
@@ -35,7 +35,7 @@
         {
             <tr>
                 <td>
-                    <img src="~/upload/news_cover/@Html.DisplayFor(modelItem => item.CoverImg)" width="100" alt="Cover" />
+                    <img src="~/upload/news_cover/@item.CoverImg" width="100" alt="Cover" />
                 </td>
                 <td>
                     @item.ReleaseDate.ToString("yyyy-MM-dd")
@@ -43,9 +43,14 @@
                 <td>
                     @Html.ActionLink(@Html.DisplayFor(modelItem => item.Title).ToString(), "Edit", new { id = item.Id })
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Content)
-                    </td>*@
+                <td class="text-center">
+                    @using (Html.BeginForm("GoTop", "News", new { id = item.Id }, FormMethod.Post))
+                    {
+                        var goTop = item.GoTop == false ? "選取" : "置頂";
+                        var color = item.GoTop == false ? "Black" : "Blue";
+                        <input type="submit" name="go-top" value="@goTop" style="color: @color" />
+                    }
+                </td>
                 <td>
                     @Html.ActionLink("編輯", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("刪除", "Delete", new { id = item.Id })

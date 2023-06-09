@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using static IAAITW.Models.EnumList;
 
 namespace IAAITW.Models
 {
@@ -29,5 +30,8 @@ namespace IAAITW.Models
         [Required(ErrorMessage = "{0}必填")]
         [Display(Name = "內文")]
         public string Content { get; set; }
+
+        [Display(Name = "置頂")]
+        public bool GoTop { get; set; } = false;
     }
 }

@@ -27,7 +27,7 @@ namespace IAAITW.Areas.CMS.Controllers
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
             // 排序由最新到最舊
-            return View(db.News.OrderByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
+            return View(db.News.OrderByDescending(p => p.GoTop).ThenByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         // GET: CMS/News/Details/5
@@ -195,6 +195,22 @@ namespace IAAITW.Areas.CMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // POST: CMS/News/GoTop
+        [HttpPost]
+        public ActionResult GoTop(int? id)
+        {
+            News news = db.News.Find(id);
+
+            if (news.GoTop == false)
+                news.GoTop = true;
+            else
+                news.GoTop = false;
+
+            db.Entry(news).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

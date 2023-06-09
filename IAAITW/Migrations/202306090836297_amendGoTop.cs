@@ -1,0 +1,18 @@
+namespace IAAITW.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class amendGoTop : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.News", "GoTop");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.News", "GoTop", c => c.Int(nullable: false));
+        }
+    }
+}

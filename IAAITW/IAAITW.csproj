@@ -328,6 +328,18 @@
     <Compile Include="Migrations\202306080754382_removeMaxLenth.Designer.cs">
       <DependentUpon>202306080754382_removeMaxLenth.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306090748320_NewsGoTop.cs" />
+    <Compile Include="Migrations\202306090748320_NewsGoTop.Designer.cs">
+      <DependentUpon>202306090748320_NewsGoTop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306090836297_amendGoTop.cs" />
+    <Compile Include="Migrations\202306090836297_amendGoTop.Designer.cs">
+      <DependentUpon>202306090836297_amendGoTop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306090837075_resetGoTop.cs" />
+    <Compile Include="Migrations\202306090837075_resetGoTop.Designer.cs">
+      <DependentUpon>202306090837075_resetGoTop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\Board.cs" />
@@ -1715,6 +1727,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306080754382_removeMaxLenth.resx">
       <DependentUpon>202306080754382_removeMaxLenth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306090748320_NewsGoTop.resx">
+      <DependentUpon>202306090748320_NewsGoTop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306090836297_amendGoTop.resx">
+      <DependentUpon>202306090836297_amendGoTop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306090837075_resetGoTop.resx">
+      <DependentUpon>202306090837075_resetGoTop.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

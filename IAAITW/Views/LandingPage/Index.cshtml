@@ -274,53 +274,26 @@
                     </div><!-- Col end -->
                 </div><!--/ Content row end -->
             </div><!--/ Container end -->
-
         </section><!-- graybg end -->
+
         <!-- Partners start -->
         <section id="partners-area" class="partners-area">
             <div class="container">
-
                 <div class="row">
                     <div id="partners-carousel" class="col-sm-12 owl-carousel owl-theme text-center partners">
-
-                        <figure class="item partner-logo">
-                            <a href="https://www.firearson.com/" target="_blank">
-                                <img class="img-responsive" src="/upfiles/images/S20160430110402.png" height="70px" width="210px" alt="client">
-                            </a>
-                        </figure>
-                        <figure class="item partner-logo">
-                            <a href="http://www.cfitrainer.net/" target="_blank">
-                                <img class="img-responsive" src="/upfiles/images/S20160430111113.jpg" height="70px" width="210px" alt="client">
-                            </a>
-                        </figure>
-                        <figure class="item partner-logo">
-                            <a href="http://www.fema.gov/" target="_blank">
-                                <img class="img-responsive" src="/upfiles/images/S20160430110554.jpg" height="70px" width="210px" alt="client">
-                            </a>
-                        </figure>
-                        <figure class="item partner-logo">
-                            <a href="http://www.nationalfire.com/" target="_blank">
-                                <img class="img-responsive" src="/upfiles/images/S20160430110828.jpg" height="70px" width="210px" alt="client">
-                            </a>
-                        </figure>
-                        <figure class="item partner-logo">
-                            <a href="http://www.nfa.gov.tw" target="_blank">
-                                <img class="img-responsive" src="/upfiles/images/S20160430110858.jpg" height="70px" width="210px" alt="client">
-                            </a>
-                        </figure>
-                        <figure class="item partner-logo">
-                            <a href="https://toxicdms.epa.gov.tw/edm/index.aspx" target="_blank">
-                                <img class="img-responsive" src="/upfiles/images/S20190627060314.jpg" height="70px" width="210px" alt="client">
-                            </a>
-                        </figure>
-
-
-
+                        @foreach (var item in ViewBag.Partners)
+                        {
+                            <figure class="item partner-logo">
+                                <a href=@item.Link target="_blank">
+                                    <img class="img-responsive" src="/upload/partner/@item.Image" height="70" width="210" alt=@item.Name>
+                                </a>
+                            </figure>
+                        }
                     </div><!--/ Owl carousel end -->
-
                 </div><!--/ Content row end -->
             </div><!--/ Container end -->
         </section><!--/ Partners end -->
+
         <!-- Footer start -->
         <footer id="footer" class="footer">
             <div class="container">

@@ -251,6 +251,7 @@
     <Compile Include="Areas\CMS\Controllers\KnowledgeController.cs" />
     <Compile Include="Areas\CMS\Controllers\MembersController.cs" />
     <Compile Include="Areas\CMS\Controllers\NewsController.cs" />
+    <Compile Include="Areas\CMS\Controllers\PartnersController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
@@ -341,6 +342,18 @@
     <Compile Include="Migrations\202306090837075_resetGoTop.Designer.cs">
       <DependentUpon>202306090837075_resetGoTop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306100601300_addPartner.cs" />
+    <Compile Include="Migrations\202306100601300_addPartner.Designer.cs">
+      <DependentUpon>202306100601300_addPartner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306100631259_amendPartner.cs" />
+    <Compile Include="Migrations\202306100631259_amendPartner.Designer.cs">
+      <DependentUpon>202306100631259_amendPartner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306100641518_amendPartner1.cs" />
+    <Compile Include="Migrations\202306100641518_amendPartner1.Designer.cs">
+      <DependentUpon>202306100641518_amendPartner1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\Board.cs" />
@@ -352,6 +365,7 @@
     <Compile Include="Models\Knowledge.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\News.cs" />
+    <Compile Include="Models\Partner.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1548,6 +1562,10 @@
     <Content Include="Views\Knowledge\Index.cshtml" />
     <Content Include="Views\Knowledge\Details.cshtml" />
     <Content Include="Views\LandingPage\Index.cshtml" />
+    <Content Include="Areas\CMS\Views\Partners\Create.cshtml" />
+    <Content Include="Areas\CMS\Views\Partners\Delete.cshtml" />
+    <Content Include="Areas\CMS\Views\Partners\Edit.cshtml" />
+    <Content Include="Areas\CMS\Views\Partners\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1738,6 +1756,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306090837075_resetGoTop.resx">
       <DependentUpon>202306090837075_resetGoTop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306100601300_addPartner.resx">
+      <DependentUpon>202306100601300_addPartner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306100631259_amendPartner.resx">
+      <DependentUpon>202306100631259_amendPartner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306100641518_amendPartner1.resx">
+      <DependentUpon>202306100641518_amendPartner1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

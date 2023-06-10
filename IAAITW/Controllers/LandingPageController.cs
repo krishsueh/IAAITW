@@ -17,6 +17,9 @@ namespace IAAITW.Controllers
             IEnumerable<News> news = db.News.ToList().OrderByDescending(p => p.GoTop).ThenByDescending(p => p.ReleaseDate).Take(4);
             ViewBag.News = news;
 
+            IEnumerable<Partner> partners = db.Partners.ToList().OrderBy(p => p.Id);
+            ViewBag.Partners = partners;
+
             return View();
         }
     }

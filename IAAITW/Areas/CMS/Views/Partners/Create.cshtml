@@ -1,0 +1,52 @@
+﻿@model IAAITW.Models.Partner
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/CMS/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card-header">
+    <h5>新增協力單位</h5>
+</div>
+
+<div class="card-block">
+    @using (Html.BeginForm("Create", "Partners", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="file" />
+                <div class="text-danger" style="display: inline-block">@ViewBag.Msg</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("返回", "Index", null, htmlAttributes: new { @class = "btn btn-light" })
+                <input type="submit" value="新增" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    }
+</div>

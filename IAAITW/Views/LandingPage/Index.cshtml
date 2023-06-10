@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -6,8 +10,7 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>國際縱火調查人員協會臺灣分會</title>
-    @Scripts.Render("~/bundles/ckeditor")
-    @Scripts.Render("~/bundles/ckfinder")
+
     <!-- Mobile Specific Metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -160,69 +163,164 @@
                 </div><!--/ Row end -->
             </div><!--/ Container end -->
         </nav><!--/ Navigation end -->
-
-        <div id="banner-area" class="banner-area" style="background-image: url(/Scripts/HTML/Images/banner-bg.jpg)">
-            <!-- Subpage title start -->
-            <div class="banner-text text-right">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <ul class="breadcrumb">
-                                <li>首頁</li>
-                                @if (ViewBag.Breadcrumb != null)
-                                {
-                                    foreach (var item in ViewBag.Breadcrumb)
-                                    {
-                                        <li>
-                                            @if (!string.IsNullOrEmpty(item.Url))
-                                            {
-                                                <a href="@item.Url">@item.Text</a>
-                                            }
-                                            else
-                                            {
-                                                @item.Text
-                                            }
-                                        </li>
-                                    }
-                                }
-                            </ul>
-                        </div>
-                    </div>
+        <!-- Carousel -->
+        <div id="main-slide" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators visible-lg visible-md">
+                <li data-target="#main-slide" data-slide-to="0" class="active"></li>
+                <li data-target="#main-slide" data-slide-to="1"></li>
+            </ol><!--/ Indicators end-->
+            <!-- Carousel inner -->
+            <div class="carousel-inner">
+                <div class="item active" style="background-image:url(/upfiles/images/20160419104850.jpg)">
                 </div>
-            </div><!-- Subpage title end -->
-        </div><!-- Banner area end -->
+                <!--/ Carousel item end -->
+            </div><!-- Carousel inner end-->
+            <!-- Controllers -->
+            <a class="left carousel-control" href="#main-slide" data-slide="prev">
+                <span><i class="fa fa-angle-left"></i></span>
+            </a>
+            <a class="right carousel-control" href="#main-slide" data-slide="next">
+                <span><i class="fa fa-angle-right"></i></span>
+            </a>
+            <span class="down-arrow-transparent"></span>
+        </div><!--/ Carousel end -->
 
-        <section id="main-container" class="main-container">
+        <section id="news" class="news">
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    @foreach (var item in ViewBag.News)
+                    {
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="latest-post">
+                                <img class="img-responsive" src="/upload/news_cover/@item.CoverImg" alt="img">
+                                <div class="post-body">
+                                    <h4 class="post-title">
+                                        <a href="/news/Details/@item.Id">@item.Title</a>
+                                    </h4>
+                                    <span class="post-item-date">
+                                        <i class="fa fa-clock-o"></i> @item.ReleaseDate.ToString("yyyy-MM-dd")
+                                    </span>
+                                    <div class="post-text">
+                                        @*@{
+                                            string content = Html.Raw(item.Content).ToString();
+                                            string truncatedContent = content.Length > 25 ? content.Substring(0, 25) + "..." : content;
+                                        }
 
-                        <div class="sidebar sidebar-right">
-                            <div class="widget">
-                                <h2 class="widget-title"><i class="fa fa-folder-open-o">&nbsp;</i>聯絡我們</h2>
-                                <ul class="arrow nav nav-tabs nav-stacked">
-                                    <li>@Html.ActionLink("聯絡我們", "Index", "Contact")</li>
-                                </ul>
-                            </div><!-- Categories end -->
+                                        @Html.Raw(truncatedContent)*@
+                                    </div>
+                                </div>
+                                <a href="/news/Details/@item.Id" class="btn btn-primary">More</a>
+                            </div><!-- Latest post end -->
+                        </div><!-- 1st post col end -->
+                    }
 
-                        </div><!-- Sidebar end -->
-                    </div><!-- Sidebar Col end -->
+                </div><!--/ Content row end -->
+            </div><!--/ Container end -->
+        </section><!--/ News end -->
 
-                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+        <section id="facts" class="facts no-padding">
+            <div class="fact-img">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-md-12 fact-text">
+                            <ol>
+                                <li>從事火災調查之科技與學術研究，提昇我國火災調查科技研究水準，並落實研究成果。</li>
+                                <li>舉辦相關學術研討會及活動，提供技術資訊與發展之交流平台，參與並推動火災調查、預防及研究等之國內外交流活動。</li>
+                                <li>發行及出版火災調查、預防及研究等相關科技研究之學術刊物、書籍及媒體等。</li>
+                                <li>從事火災原因研究、危險因子診斷及災害預防等技術與系統之研發、相關資料庫之建立、及推廣和教育。</li>
+                                <li>提昇火災預防及調查專業人員之技術，並輔導會員取得國際證照。</li>
+                                <li>維護會員合法權益、端正會員職業道德與倫理、促進會員間之合作。</li>
+                                <li>關懷社會並維護社會公理正義。</li>
+                            </ol>
+                        </div><!-- Col end -->
+                    </div><!--/ Content row end -->
+                </div><!--/ Container end -->
+            </div><!--/ Container end -->
+        </section><!-- Facts end -->
 
-                        <!-- 內容開始 -->
+        <section id="news" class="news">
+            <div class="container">
 
-                        @RenderBody()
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="latest-post">
+                            <img class="img-responsive" src="images/part2_menu_1.jpg" alt="img">
+                        </div><!-- Latest post end -->
+                    </div><!-- 1st post col end -->
 
-                        <!-- 內容結束 -->
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="latest-post">
+                            <img class="img-responsive" src="images/part2_menu_2.jpg" alt="img">
+                        </div><!-- Latest post end -->
+                    </div><!-- 2nd post col end -->
 
-                    </div><!-- Content Col end -->
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="latest-post">
+                            <img class="img-responsive" src="images/part2_menu_3.jpg" alt="img">
+                        </div><!-- Latest post end -->
+                    </div><!-- 3rd post col end -->
 
-                </div><!-- Main row end -->
+                </div><!--/ Content row end -->
+            </div><!--/ Container end -->
+        </section><!--/ News end -->
 
-            </div><!-- Conatiner end -->
-        </section><!-- Main container end -->
+        <section id="graybg" class="graybg">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <img class="img-responsive" src="images/part3.jpg" alt="img">
+                    </div><!-- Col end -->
+                </div><!--/ Content row end -->
+            </div><!--/ Container end -->
+
+        </section><!-- graybg end -->
+        <!-- Partners start -->
+        <section id="partners-area" class="partners-area">
+            <div class="container">
+
+                <div class="row">
+                    <div id="partners-carousel" class="col-sm-12 owl-carousel owl-theme text-center partners">
+
+                        <figure class="item partner-logo">
+                            <a href="https://www.firearson.com/" target="_blank">
+                                <img class="img-responsive" src="/upfiles/images/S20160430110402.png" height="70px" width="210px" alt="client">
+                            </a>
+                        </figure>
+                        <figure class="item partner-logo">
+                            <a href="http://www.cfitrainer.net/" target="_blank">
+                                <img class="img-responsive" src="/upfiles/images/S20160430111113.jpg" height="70px" width="210px" alt="client">
+                            </a>
+                        </figure>
+                        <figure class="item partner-logo">
+                            <a href="http://www.fema.gov/" target="_blank">
+                                <img class="img-responsive" src="/upfiles/images/S20160430110554.jpg" height="70px" width="210px" alt="client">
+                            </a>
+                        </figure>
+                        <figure class="item partner-logo">
+                            <a href="http://www.nationalfire.com/" target="_blank">
+                                <img class="img-responsive" src="/upfiles/images/S20160430110828.jpg" height="70px" width="210px" alt="client">
+                            </a>
+                        </figure>
+                        <figure class="item partner-logo">
+                            <a href="http://www.nfa.gov.tw" target="_blank">
+                                <img class="img-responsive" src="/upfiles/images/S20160430110858.jpg" height="70px" width="210px" alt="client">
+                            </a>
+                        </figure>
+                        <figure class="item partner-logo">
+                            <a href="https://toxicdms.epa.gov.tw/edm/index.aspx" target="_blank">
+                                <img class="img-responsive" src="/upfiles/images/S20190627060314.jpg" height="70px" width="210px" alt="client">
+                            </a>
+                        </figure>
+
+
+
+                    </div><!--/ Owl carousel end -->
+
+                </div><!--/ Content row end -->
+            </div><!--/ Container end -->
+        </section><!--/ Partners end -->
         <!-- Footer start -->
         <footer id="footer" class="footer">
             <div class="container">
@@ -281,3 +379,5 @@
     </div><!-- Body inner end -->
 </body>
 </html>
+
+

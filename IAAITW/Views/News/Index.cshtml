@@ -28,14 +28,12 @@
                             <a href="@Url.Action("Details", "News", new { id = item.Id })">@item.Title</a>
                         </h3>
                         <p>
-                            <em>
-                                @{
-                                    string content = Html.Raw(item.Content).ToString();
-                                    string truncatedContent = content.Length > 50 ? content.Substring(0, 50) + "..." : content;
-                                }
+                            @{
+                                string content = Html.Raw(item.Content).ToString();
+                                string truncatedContent = content.Length > 50 ? content.Substring(0, 50) + "..." : content;
+                            }
 
-                                @Html.Raw(truncatedContent)
-                            </em>
+                            @Html.Raw(truncatedContent)
                         </p>
 
                     </div>

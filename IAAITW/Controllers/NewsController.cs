@@ -25,7 +25,7 @@ namespace IAAITW.Controllers
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
             // 排序由最新到最舊
-            return View(db.News.OrderByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
+            return View(db.News.OrderByDescending(p => p.GoTop).ThenByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         // GET: News/Details/5

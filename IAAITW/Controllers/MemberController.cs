@@ -167,41 +167,15 @@ namespace IAAITW.Controllers
                     return View(member);
                 }
 
-                if (member.PastEmployer2 == null)
-                {
-                    member.PastJobTitle2 = null;
-                    member.StartYear2 = null;
-                    member.EndYear2 = null;
-                    member.StartMonth2 = null;
-                    member.EndMonth2 = null;
-                }
-                else if (!ValidateDate(member.StartYear2, member.StartMonth2, member.EndYear2, member.EndMonth2))
+                if (!ValidateDate(member.StartYear2, member.StartMonth2, member.EndYear2, member.EndMonth2))
                 {
                     ViewBag.MsgDate2 = "起訖日期有誤";
                     return View(member);
                 }
-                else
-                {
-                    ViewBag.MsgDate2 = "請填寫完整起訖日期";
-                    return View(member);
-                }
-
-                if (member.PastEmployer3 == null)
-                {
-                    member.PastJobTitle3 = null;
-                    member.StartYear3 = null;
-                    member.EndYear3 = null;
-                    member.StartMonth3 = null;
-                    member.EndMonth3 = null;
-                }
-                else if (!ValidateDate(member.StartYear3, member.StartMonth3, member.EndYear3, member.EndMonth3))
+             
+                if (!ValidateDate(member.StartYear3, member.StartMonth3, member.EndYear3, member.EndMonth3))
                 {
                     ViewBag.MsgDate3 = "起訖日期有誤";
-                    return View(member);
-                }
-                else
-                {
-                    ViewBag.MsgDate3 = "請填寫完整起訖日期";
                     return View(member);
                 }
 
@@ -216,15 +190,6 @@ namespace IAAITW.Controllers
             }
 
             return View(member);
-        }
-
-        bool ValidateDate(int? startYear, int? startMonth, int? endYear, int? endMonth)
-        {
-            if (endYear < startYear || (endYear == startYear && endMonth < startMonth) || startYear < 1 || startYear > DateTime.Today.Year || endYear < 1 || endYear > DateTime.Today.Year || startMonth < 1 || startMonth > 12 || endMonth < 1 || endMonth > 12)
-            {
-                return false;
-            }
-            return true;
         }
 
         // GET: Member/Edit/5
@@ -300,41 +265,16 @@ namespace IAAITW.Controllers
                     return View(member);
                 }
 
-                if (member.PastEmployer2 == null)
-                {
-                    member.PastJobTitle2 = null;
-                    member.StartYear2 = null;
-                    member.EndYear2 = null;
-                    member.StartMonth2 = null;
-                    member.EndMonth2 = null;
-                }
-                else if (!ValidateDate(member.StartYear2, member.StartMonth2, member.EndYear2, member.EndMonth2))
+                if (!ValidateDate(member.StartYear2, member.StartMonth2, member.EndYear2, member.EndMonth2))
                 {
                     ViewBag.MsgDate2 = "起訖日期有誤";
                     return View(member);
                 }
-                else
-                {
-                    ViewBag.MsgDate2 = "請填寫完整起訖日期";
-                    return View(member);
-                }
 
-                if (member.PastEmployer3 == null)
-                {
-                    member.PastJobTitle3 = null;
-                    member.StartYear3 = null;
-                    member.EndYear3 = null;
-                    member.StartMonth3 = null;
-                    member.EndMonth3 = null;
-                }
-                else if (!ValidateDate(member.StartYear3, member.StartMonth3, member.EndYear3, member.EndMonth3))
+
+                if (!ValidateDate(member.StartYear3, member.StartMonth3, member.EndYear3, member.EndMonth3))
                 {
                     ViewBag.MsgDate3 = "起訖日期有誤";
-                    return View(member);
-                }
-                else
-                {
-                    ViewBag.MsgDate3 = "請填寫完整起訖日期";
                     return View(member);
                 }
 
@@ -350,5 +290,13 @@ namespace IAAITW.Controllers
             return View(member);
         }
 
+        bool ValidateDate(int? startYear, int? startMonth, int? endYear, int? endMonth)
+        {
+            if (endYear < startYear || (endYear == startYear && endMonth < startMonth) || startYear > DateTime.Today.Year || endYear > DateTime.Today.Year)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

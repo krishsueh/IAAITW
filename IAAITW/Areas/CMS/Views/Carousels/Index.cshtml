@@ -26,7 +26,7 @@
         {
             <tr>
                 <td>
-                    <img src="~/upload/partner/@item.Image" width="100" alt="" />
+                    <img src="~/upload/carousel/@item.Image" width="100" alt="" />
                 </td>
                 <td>
                     @using (Html.BeginForm("Delete", "Carousels", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))

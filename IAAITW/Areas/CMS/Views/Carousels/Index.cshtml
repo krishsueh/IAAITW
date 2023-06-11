@@ -6,14 +6,56 @@
     Layout = "~/Areas/CMS/Views/Shared/LandingPage_Layout.cshtml";
 }
 
+<script>
+    $(document).ready(function () {
+        $('#myModal').modal({
+            show: false, // 初始化時不顯示彈窗
+            backdrop: 'static' // 點擊彈窗外部區域時不關閉彈窗
+        });
+    });
+</script>
+
 <div class="card-header">
     <h5>輪播圖</h5>
 </div>
 
 <div class="card-block">
     <p>
-        @Html.ActionLink("新增輪播圖", "Create")
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            新增
+        </button>
     </p>
+
+    <!--新增輪播圖彈窗-->
+    @using (Html.BeginForm("Create", "Carousels", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body text-center">
+                        <div style="margin: 20px auto">
+                            <input type="file" name="file" />
+                            <p>檔案格式僅限 jpg, jpeg, png, gif</p>
+                            <div class="text-danger">@ViewBag.Msg</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="新增" class="btn btn-primary" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+
     <table class="table">
         <tr>
             <th>
@@ -43,4 +85,5 @@
         @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
     </div>
 </div>
+
 

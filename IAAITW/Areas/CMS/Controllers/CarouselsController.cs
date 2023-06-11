@@ -64,13 +64,13 @@ namespace IAAITW.Areas.CMS.Controllers
                 else
                 {
                     ViewBag.Msg = "檔案格式不符合";
-                    return View();
+                    return RedirectToAction("Index");
                 }
             }
             else
             {
                 ViewBag.Msg = "請上傳圖片";
-                return View();
+                return RedirectToAction("Index");
             }
         }
 

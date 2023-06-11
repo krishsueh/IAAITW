@@ -1575,6 +1575,7 @@
     <Content Include="Areas\CMS\Views\Shared\LandingPage_Layout.cshtml" />
     <Content Include="Areas\CMS\Views\Carousels\Index.cshtml" />
     <Content Include="Areas\CMS\Views\Carousels\Create.cshtml" />
+    <Content Include="Areas\CMS\Views\Carousels\Partial\Modal.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

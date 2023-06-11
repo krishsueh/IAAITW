@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/CMS/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/CMS/Views/Shared/LandingPage_Layout.cshtml";
 }
 
 <div class="card-header">
@@ -45,7 +45,7 @@
                     @using (Html.BeginForm("Delete", "Partners", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input type="submit" name="delete" value="刪除" class="btn btn-link" id=@item.Id />
+                        <input type="submit" name="delete" value="刪除" class="btn btn-link" />
                     }
                 </td>
             </tr>

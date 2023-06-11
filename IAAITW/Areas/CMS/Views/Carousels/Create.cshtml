@@ -1,0 +1,36 @@
+﻿@model IAAITW.Models.Carousel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/CMS/Views/Shared/LandingPage_Layout.cshtml";
+}
+
+<div class="card-header">
+    <h5>新增輪播圖</h5>
+</div>
+
+<div class="card-block">
+    @using (Html.BeginForm("Create", "Carousels", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="file" />
+                    <div class="text-danger" style="display: inline-block">@ViewBag.Msg</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("返回", "Index", null, htmlAttributes: new { @class = "btn btn-light" })
+                    <input type="submit" value="新增" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

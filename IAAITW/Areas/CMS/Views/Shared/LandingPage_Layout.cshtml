@@ -198,8 +198,8 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     @*<div class="page-header-title">
-                                            <h5 class="m-b-10">@ViewBag.Title</h5>
-                                        </div>*@
+                            <h5 class="m-b-10">@ViewBag.Title</h5>
+                        </div>*@
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="/CMS/Home/Index"><i class="feather icon-home"></i> 首頁</a></li>
                                         @if (ViewBag.Breadcrumb != null)
@@ -224,6 +224,12 @@
                         </div>
                     </div>
                     <!-- [ breadcrumb ] end -->
+
+                    <ul class="nav" style="display: flex; margin-bottom: 20px">
+                        <li>@Html.ActionLink("輪播圖", "Index", "Carousels", null, htmlAttributes: new { @class = "btn btn-secondary" })</li>
+                        <li>@Html.ActionLink("協力單位", "Index", "Partners", null, htmlAttributes: new { @class = "btn btn-secondary" })</li>
+                    </ul>
+
                     <div class="main-body">
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->

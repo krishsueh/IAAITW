@@ -247,6 +247,7 @@
     <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
     <Compile Include="Areas\CMS\Controllers\ArticleController.cs" />
     <Compile Include="Areas\CMS\Controllers\AccountsController.cs" />
+    <Compile Include="Areas\CMS\Controllers\CarouselsController.cs" />
     <Compile Include="Areas\CMS\Controllers\HomeController.cs" />
     <Compile Include="Areas\CMS\Controllers\KnowledgeController.cs" />
     <Compile Include="Areas\CMS\Controllers\MembersController.cs" />
@@ -354,10 +355,15 @@
     <Compile Include="Migrations\202306100641518_amendPartner1.Designer.cs">
       <DependentUpon>202306100641518_amendPartner1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306100908039_addCarousel.cs" />
+    <Compile Include="Migrations\202306100908039_addCarousel.Designer.cs">
+      <DependentUpon>202306100908039_addCarousel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\BoardReply.cs" />
+    <Compile Include="Models\Carousel.cs" />
     <Compile Include="Models\CMSAccount.cs" />
     <Compile Include="Models\CMSIdentity.cs" />
     <Compile Include="Models\EnumList.cs" />
@@ -1566,6 +1572,9 @@
     <Content Include="Areas\CMS\Views\Partners\Delete.cshtml" />
     <Content Include="Areas\CMS\Views\Partners\Edit.cshtml" />
     <Content Include="Areas\CMS\Views\Partners\Index.cshtml" />
+    <Content Include="Areas\CMS\Views\Shared\LandingPage_Layout.cshtml" />
+    <Content Include="Areas\CMS\Views\Carousels\Index.cshtml" />
+    <Content Include="Areas\CMS\Views\Carousels\Create.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1765,6 +1774,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306100641518_amendPartner1.resx">
       <DependentUpon>202306100641518_amendPartner1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306100908039_addCarousel.resx">
+      <DependentUpon>202306100908039_addCarousel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

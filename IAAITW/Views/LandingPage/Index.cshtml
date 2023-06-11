@@ -1,5 +1,6 @@
 ﻿@{
     Layout = null;
+    IEnumerable<IAAITW.Models.Carousel> carousel = ViewBag.Carousel;
 }
 
 <!DOCTYPE html>
@@ -167,13 +168,30 @@
         <div id="main-slide" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators visible-lg visible-md">
-                <li data-target="#main-slide" data-slide-to="0" class="active"></li>
-                <li data-target="#main-slide" data-slide-to="1"></li>
+                @*<li data-target="#main-slide" data-slide-to="0" class="active"></li>
+                    <li data-target="#main-slide" data-slide-to="1"></li>
+                    <li data-target="#main-slide" data-slide-to="2"></li>*@
+
+                @for (int i = 0; i < carousel.Count(); i++)
+                {
+                    <li data-target="#main-slide" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+                }
+
             </ol><!--/ Indicators end-->
             <!-- Carousel inner -->
             <div class="carousel-inner">
-                <div class="item active" style="background-image:url(/upfiles/images/20160419104850.jpg)">
-                </div>
+                @*<div class="item active" style="background-image:url(/upload/slider.jpg)">
+                    </div>
+                    <div class="item" style="background-image:url(/upload/slider.jpg)">
+                    </div>
+                    <div class="item" style="background-image:url(/upload/slider.jpg)">
+                    </div>*@
+
+                @for (int i = 0; i < carousel.Count(); i++)
+                {
+                    <div class="item @(i == 0 ? "active" : "")" style="background-image: url('@Url.Content("~/upload/carousel/" + carousel.ElementAt(i).Image)');">
+                    </div><!--/ Carousel item end -->
+                }
                 <!--/ Carousel item end -->
             </div><!-- Carousel inner end-->
             <!-- Controllers -->
@@ -204,11 +222,11 @@
                                     </span>
                                     <div class="post-text">
                                         @*@{
-                                            string content = Html.Raw(item.Content).ToString();
-                                            string truncatedContent = content.Length > 25 ? content.Substring(0, 25) + "..." : content;
-                                        }
+                                                string content = Html.Raw(item.Content).ToString();
+                                                string truncatedContent = content.Length > 25 ? content.Substring(0, 25) + "..." : content;
+                                            }
 
-                                        @Html.Raw(truncatedContent)*@
+                                            @Html.Raw(truncatedContent)*@
                                     </div>
                                 </div>
                                 <a href="/news/Details/@item.Id" class="btn btn-primary">More</a>
@@ -246,19 +264,19 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="latest-post">
-                            <img class="img-responsive" src="images/part2_menu_1.jpg" alt="img">
+                            <img class="img-responsive" src="~/Scripts/HTML/Images/part2_menu_1.jpg" alt="img">
                         </div><!-- Latest post end -->
                     </div><!-- 1st post col end -->
 
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="latest-post">
-                            <img class="img-responsive" src="images/part2_menu_2.jpg" alt="img">
+                            <img class="img-responsive" src="~/Scripts/HTML/Images/part2_menu_2.jpg" alt="img">
                         </div><!-- Latest post end -->
                     </div><!-- 2nd post col end -->
 
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="latest-post">
-                            <img class="img-responsive" src="images/part2_menu_3.jpg" alt="img">
+                            <img class="img-responsive" src="~/Scripts/HTML/Images/part2_menu_3.jpg" alt="img">
                         </div><!-- Latest post end -->
                     </div><!-- 3rd post col end -->
 
@@ -270,12 +288,11 @@
             <div class="container">
                 <div class="row ">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <img class="img-responsive" src="images/part3.jpg" alt="img">
+                        <img class="img-responsive" src="~/Scripts/HTML/Images/part3.jpg" alt="img">
                     </div><!-- Col end -->
                 </div><!--/ Content row end -->
             </div><!--/ Container end -->
         </section><!-- graybg end -->
-
         <!-- Partners start -->
         <section id="partners-area" class="partners-area">
             <div class="container">
@@ -293,7 +310,6 @@
                 </div><!--/ Content row end -->
             </div><!--/ Container end -->
         </section><!--/ Partners end -->
-
         <!-- Footer start -->
         <footer id="footer" class="footer">
             <div class="container">

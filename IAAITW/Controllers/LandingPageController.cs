@@ -14,6 +14,9 @@ namespace IAAITW.Controllers
         // GET: LandingPage
         public ActionResult Index()
         {
+            IEnumerable<Carousel> carousels = db.Carousels.ToList().OrderBy(p => p.Id);
+            ViewBag.Carousel = carousels;
+
             IEnumerable<News> news = db.News.ToList().OrderByDescending(p => p.GoTop).ThenByDescending(p => p.ReleaseDate).Take(4);
             ViewBag.News = news;
 

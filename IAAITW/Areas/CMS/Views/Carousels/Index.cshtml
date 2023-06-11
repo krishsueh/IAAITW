@@ -1,0 +1,46 @@
+﻿@using MvcPaging
+@model MvcPaging.IPagedList<IAAITW.Models.Carousel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/CMS/Views/Shared/LandingPage_Layout.cshtml";
+}
+
+<div class="card-header">
+    <h5>輪播圖</h5>
+</div>
+
+<div class="card-block">
+    <p>
+        @Html.ActionLink("新增輪播圖", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Image)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/upload/partner/@item.Image" width="100" alt="" />
+                </td>
+                <td>
+                    @using (Html.BeginForm("Delete", "Carousels", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" name="delete" value="刪除" class="btn btn-link" />
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+    </div>
+</div>
+

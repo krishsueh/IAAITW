@@ -12,7 +12,7 @@
 
 <div class="card-block">
     <p>
-        @Html.ActionLink("新增協力單位", "Create")
+        @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -35,17 +35,16 @@
                     <img src="~/upload/partner/@item.Image" width="100" alt="@item.Name" />
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.ActionLink(@item.Name,"Edit", new { id = item.Id })
                 </td>
                 <td>
                     <a href=@item.Link target="_blank">@item.Link</a>
                 </td>
                 <td>
-                    @Html.ActionLink("編輯", "Edit", new { id = item.Id }) |
                     @using (Html.BeginForm("Delete", "Partners", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input type="submit" name="delete" value="刪除" class="btn btn-link" />
+                        <input type="submit" name="delete" value="刪除" class="btn btn-outline-danger" />
                     }
                 </td>
             </tr>

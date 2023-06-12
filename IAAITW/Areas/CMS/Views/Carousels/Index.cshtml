@@ -74,7 +74,7 @@
                     @using (Html.BeginForm("Delete", "Carousels", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input type="submit" name="delete" value="刪除" class="btn btn-link" />
+                        <input type="submit" name="delete" value="刪除" class="btn btn-outline-danger" />
                     }
                 </td>
             </tr>

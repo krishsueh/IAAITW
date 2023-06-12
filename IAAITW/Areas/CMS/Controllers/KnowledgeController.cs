@@ -29,26 +29,6 @@ namespace IAAITW.Areas.CMS.Controllers
             return View(db.Knowledges.OrderByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
-        // GET: CMS/Knowledge/Details/5
-        public ActionResult Details(int? id)
-        {
-            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "知識庫", Url = Url.Action("Index", "Knowledge") });
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "知識庫項目", Url = null });
-            ViewBag.Breadcrumb = breadcrumb;
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Knowledge knowledge = db.Knowledges.Find(id);
-            if (knowledge == null)
-            {
-                return HttpNotFound();
-            }
-            return View(knowledge);
-        }
-
         // GET: CMS/Knowledge/Create
         public ActionResult Create()
         {
@@ -157,30 +137,10 @@ namespace IAAITW.Areas.CMS.Controllers
             return View(knowledge);
         }
 
-        // GET: CMS/Knowledgess/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "知識庫", Url = Url.Action("Index", "Knowledge") });
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "刪除知識庫", Url = null });
-            ViewBag.Breadcrumb = breadcrumb;
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Knowledge knowledge = db.Knowledges.Find(id);
-            if (knowledge == null)
-            {
-                return HttpNotFound();
-            }
-            return View(knowledge);
-        }
-
         // POST: CMS/Knowledgess/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
             Knowledge knowledge = db.Knowledges.Find(id);
             db.Knowledges.Remove(knowledge);

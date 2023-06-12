@@ -7669,7 +7669,7 @@ a.btn-theme.active {
 }
 
 .btn {
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   border-radius: 0.25rem;
   font-size: 14px;
   margin-bottom: 5px;

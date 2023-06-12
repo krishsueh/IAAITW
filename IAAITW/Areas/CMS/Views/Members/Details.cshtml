@@ -21,14 +21,6 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Password)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Password)
-            </dd>
-
-            <dt>
                 @Html.DisplayNameFor(model => model.Name)
             </dt>
 
@@ -285,8 +277,8 @@
 
         </dl>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+    <div class="mt-5">
+        @Html.ActionLink("返回", "Index", null, htmlAttributes: new { @class = "btn btn-light" })
+        @Html.ActionLink("編輯", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+    </div>
 </div>

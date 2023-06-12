@@ -12,7 +12,7 @@
 
 <div class="card-block">
     <p>
-        @Html.ActionLink("新增訊息", "Create")
+        @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -25,7 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
             </th>
-            <th class="text-center">
+            <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().GoTop)
             </th>
             <th></th>
@@ -46,14 +46,15 @@
                 <td class="text-center">
                     @using (Html.BeginForm("GoTop", "News", new { id = item.Id }, FormMethod.Post))
                     {
-                        var goTop = item.GoTop == false ? "選取" : "置頂";
-                        var color = item.GoTop == false ? "Black" : "Blue";
-                        <input type="submit" name="go-top" value="@goTop" style="color: @color" />
+                        <input type="submit" name="go-top" value="@(item.GoTop == false ? "選取" : "置頂")" class="@(item.GoTop == false ? "btn btn-light" : "btn btn-info")" />
                     }
                 </td>
                 <td>
-                    @Html.ActionLink("編輯", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+                    @using (Html.BeginForm("Delete", "News", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-outline-danger">刪除</button>
+                    }
                 </td>
             </tr>
         }

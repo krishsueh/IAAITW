@@ -21,7 +21,7 @@ namespace IAAITW.Areas.CMS.Controllers
         public ActionResult Index(int? page)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協力單位列表", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協力單位", Url = null });
             ViewBag.Breadcrumb = breadcrumb;
 
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
@@ -33,7 +33,7 @@ namespace IAAITW.Areas.CMS.Controllers
         public ActionResult Create()
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協力單位列表", Url = Url.Action("Index", "Partners") });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協力單位", Url = Url.Action("Index", "Partners") });
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "新增協力單位", Url = null });
             ViewBag.Breadcrumb = breadcrumb;
 
@@ -85,7 +85,7 @@ namespace IAAITW.Areas.CMS.Controllers
         public ActionResult Edit(int? id)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協力單位列表", Url = Url.Action("Index", "Partners") });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協力單位", Url = Url.Action("Index", "Partners") });
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "編輯協力單位", Url = null });
             ViewBag.Breadcrumb = breadcrumb;
 

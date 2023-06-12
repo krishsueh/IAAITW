@@ -12,7 +12,7 @@
 
 <div class="card-block">
     <p>
-        @Html.ActionLink("新增知識庫", "Create")
+        @Html.ActionLink("新增", "Create", null, new { @class="btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -22,9 +22,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Content)
-                </th>*@
             <th></th>
         </tr>
 
@@ -37,12 +34,12 @@
                 <td>
                     @Html.ActionLink(@Html.DisplayFor(modelItem => item.Title).ToString(), "Edit", new { id = item.Id })
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Content)
-                    </td>*@
                 <td>
-                    @Html.ActionLink("編輯", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+                    @using (Html.BeginForm("Delete", "Knowlege", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-outline-danger">刪除</button>
+                    }
                 </td>
             </tr>
         }

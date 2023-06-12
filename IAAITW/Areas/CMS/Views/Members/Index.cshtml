@@ -56,8 +56,12 @@
                     @Html.DisplayFor(modelItem => item.InternationalMembership)
                 </td>
                 <td>
-                    @Html.ActionLink("編輯", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+                    @*@Html.ActionLink("編輯", "Edit", new { id = item.Id }) |*@
+                    @using (Html.BeginForm("Delete", "Members", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-outline-danger">刪除</button>
+                    }
                 </td>
             </tr>
         }

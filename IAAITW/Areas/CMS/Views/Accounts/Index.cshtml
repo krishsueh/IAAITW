@@ -12,7 +12,7 @@
 
 <div class="card-block">
     <p>
-        @Html.ActionLink("新增帳號", "Create")
+        @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -35,15 +35,13 @@
                     @Html.DisplayFor(modelItem => item.MyIdentity.Identity)
                 </td>
                 <td class="align-middle">
-                    <a href="@Url.Action("Details","Accounts", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Name)</a>
+                    <a href="@Url.Action("Edit","Accounts", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Name)</a>
                 </td>
                 <td class="align-middle">
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td class="align-middle">
                     <div class="d-flex">
-                        @Html.ActionLink("編輯", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
-
                         @using (Html.BeginForm("Delete", "Accounts", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
                         {
                             @Html.AntiForgeryToken()

@@ -30,26 +30,6 @@ namespace IAAITW.Areas.CMS.Controllers
             return View(db.News.OrderByDescending(p => p.GoTop).ThenByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
-        // GET: CMS/News/Details/5
-        public ActionResult Details(int? id)
-        {
-            var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "訊息列表", Url = Url.Action("Index", "News") });
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "訊息項目", Url = null });
-            ViewBag.Breadcrumb = breadcrumb;
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            News news = db.News.Find(id);
-            if (news == null)
-            {
-                return HttpNotFound();
-            }
-            return View(news);
-        }
-
         // GET: CMS/News/Create
         public ActionResult Create()
         {
@@ -162,25 +142,10 @@ namespace IAAITW.Areas.CMS.Controllers
             return View(news);
         }
 
-        // GET: CMS/News/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            News news = db.News.Find(id);
-            if (news == null)
-            {
-                return HttpNotFound();
-            }
-            return View(news);
-        }
-
         // POST: CMS/News/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
             News news = db.News.Find(id);
             db.News.Remove(news);

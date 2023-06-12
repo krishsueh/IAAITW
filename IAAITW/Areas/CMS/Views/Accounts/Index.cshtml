@@ -17,6 +17,9 @@
     <table class="table">
         <tr>
             <th>
+                編號
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().MyIdentity.Identity)
             </th>
             <th>
@@ -28,9 +31,17 @@
             <th></th>
         </tr>
 
+        @{
+            int pageSize = Model.PageSize;
+            int currentPage = Model.PageNumber;
+            int startIndex = (currentPage - 1) * pageSize + 1;
+        }
         @foreach (var item in Model)
         {
             <tr>
+                <td class="align-middle">
+                    @startIndex
+                </td>
                 <td class="align-middle">
                     @Html.DisplayFor(modelItem => item.MyIdentity.Identity)
                 </td>
@@ -48,6 +59,7 @@
                     }
                 </td>
             </tr>
+            startIndex++;
         }
     </table>
 

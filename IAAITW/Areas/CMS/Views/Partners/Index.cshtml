@@ -17,6 +17,9 @@
     <table class="table">
         <tr>
             <th>
+                編號
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Image)
             </th>
             <th>
@@ -28,14 +31,22 @@
             <th></th>
         </tr>
 
+        @{
+            int pageSize = Model.PageSize;
+            int currentPage = Model.PageNumber;
+            int startIndex = (currentPage - 1) * pageSize + 1;
+        }
         @foreach (var item in Model)
         {
             <tr>
                 <td>
+                    @startIndex
+                </td>
+                <td>
                     <img src="~/upload/partner/@item.Image" width="100" alt="@item.Name" />
                 </td>
                 <td>
-                    @Html.ActionLink(@item.Name,"Edit", new { id = item.Id })
+                    @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
                 </td>
                 <td>
                     <a href=@item.Link target="_blank">@item.Link</a>
@@ -48,6 +59,7 @@
                     }
                 </td>
             </tr>
+            startIndex++;
         }
     </table>
     <div class="pager">

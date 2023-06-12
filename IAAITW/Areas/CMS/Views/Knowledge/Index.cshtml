@@ -12,10 +12,13 @@
 
 <div class="card-block">
     <p>
-        @Html.ActionLink("新增", "Create", null, new { @class="btn btn-primary" })
+        @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
+            <th>
+                編號
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().ReleaseDate)
             </th>
@@ -25,9 +28,17 @@
             <th></th>
         </tr>
 
+        @{
+            int pageSize = Model.PageSize;
+            int currentPage = Model.PageNumber;
+            int startIndex = (currentPage - 1) * pageSize + 1;
+        }
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @startIndex
+                </td>
                 <td>
                     @item.ReleaseDate.ToString("yyyy-MM-dd")
                 </td>
@@ -42,6 +53,7 @@
                     }
                 </td>
             </tr>
+            startIndex++;
         }
 
     </table>

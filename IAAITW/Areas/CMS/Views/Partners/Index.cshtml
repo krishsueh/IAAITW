@@ -11,9 +11,17 @@
 </div>
 
 <div class="card-block">
-    <p>
-        @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
-    </p>
+    @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+
+    <div style="display: inline-block; float: right">
+        @using (Html.BeginForm())
+        {
+            <input id="search" name="search" type="search" value="@ViewBag.Search" placeholder=@Html.DisplayNameFor(model => model.FirstOrDefault().Name) class="search-bar" />
+            <input type="submit" value="搜尋" class="btn btn-light" />
+        }
+    </div>
+
+
     <table class="table">
         <tr>
             <th>
@@ -46,7 +54,10 @@
                     <img src="~/upload/partner/@item.Image" width="100" alt="@item.Name" />
                 </td>
                 <td>
-                    @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
+                    @Html.ActionLink(@item.Name, "Edit", new
+                    {
+                        id = item.Id
+    })
                 </td>
                 <td>
                     <a href=@item.Link target="_blank">@item.Link</a>

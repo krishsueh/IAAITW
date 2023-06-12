@@ -29,6 +29,20 @@ namespace IAAITW.Areas.CMS.Controllers
             return View(db.Knowledges.OrderByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
+        [HttpPost]
+        public ActionResult Index(string search, int? page)
+        {
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+
+            var knowledges = db.Knowledges.AsQueryable();
+            if (!string.IsNullOrEmpty(search))
+            {
+                knowledges = knowledges.Where(x => x.Title.Contains(search) || x.Content.Contains(search));
+            }
+            ViewBag.Search = search;
+            return View(knowledges.OrderByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
+        }
+
         // GET: CMS/Knowledge/Create
         public ActionResult Create()
         {

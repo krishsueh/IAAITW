@@ -11,9 +11,14 @@
 </div>
 
 <div class="card-block">
-    <p>
-        @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
-    </p>
+    @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+    <div style="display: inline-block; float: right">
+        @using (Html.BeginForm())
+        {
+            <input id="search" name="search" type="search" value="@ViewBag.Search" placeholder="標題、內文" class="search-bar" />
+            <input type="submit" value="搜尋" class="btn btn-light" />
+        }
+    </div>
     <table class="table">
         <tr>
             <th>

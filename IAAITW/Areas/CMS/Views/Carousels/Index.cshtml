@@ -19,12 +19,13 @@
     <h5>輪播圖</h5>
 </div>
 
+
+
 <div class="card-block">
-    <p>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            新增
-        </button>
-    </p>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        新增
+    </button>
 
     <!--新增輪播圖彈窗-->
     @using (Html.BeginForm("Create", "Carousels", FormMethod.Post, new { enctype = "multipart/form-data" }))

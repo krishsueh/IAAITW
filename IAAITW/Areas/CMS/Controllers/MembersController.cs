@@ -33,6 +33,20 @@ namespace IAAITW.Areas.CMS.Controllers
             return View(db.Members.OrderBy(x => x.Id).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
+        [HttpPost]
+        public ActionResult Index(string search, int? page)
+        {
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+
+            var members = db.Members.AsQueryable();
+            if (!string.IsNullOrEmpty(search))
+            {
+                members = members.Where(x => x.Account.Contains(search) || x.Name.Contains(search) || x.Gender.ToString().Contains(search) || x.MemberTypes.ToString().Contains(search) || x.Tel.Contains(search) || x.Mobile.Contains(search) || x.Address.Contains(search) || x.Email.Contains(search));
+            }
+            ViewBag.Search = search;
+            return View(members.OrderBy(x => x.Id).ToPagedList(currentPageIndex, DefaultPageSize));
+        }
+
         // GET: CMS/Members/Details/5
         public ActionResult Details(int? id)
         {

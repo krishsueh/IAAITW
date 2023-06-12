@@ -11,6 +11,13 @@
 </div>
 
 <div class="card-block">
+    <div style="display: inline-block; float: right">
+        @using (Html.BeginForm())
+        {
+            <input id="search" name="search" type="search" value="@ViewBag.Search" placeholder="關鍵字" class="search-bar" />
+            <input type="submit" value="搜尋" class="btn btn-light" />
+        }
+    </div>
     <table class="table">
         <tr>
             <th>

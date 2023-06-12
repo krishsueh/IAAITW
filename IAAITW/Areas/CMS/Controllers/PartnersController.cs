@@ -15,7 +15,7 @@ namespace IAAITW.Areas.CMS.Controllers
     public class PartnersController : Controller
     {
         private IaaiTwDb db = new IaaiTwDb();
-        private const int DefaultPageSize = 10;
+        private const int DefaultPageSize = 3;
 
         // GET: CMS/Partners
         public ActionResult Index(int? page)
@@ -27,6 +27,20 @@ namespace IAAITW.Areas.CMS.Controllers
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
             return View(db.Partners.OrderBy(p => p.Id).ToPagedList(currentPageIndex, DefaultPageSize));
+        }
+
+        [HttpPost]
+        public ActionResult Index(string search, int? page)
+        {
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+
+            var partners = db.Partners.AsQueryable();
+            if (!string.IsNullOrEmpty(search))
+            {
+                partners = partners.Where(x => x.Name.Contains(search));
+            }
+            ViewBag.Search = search;
+            return View(partners.OrderBy(p => p.Id).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         // GET: CMS/Partners/Create

@@ -6903,15 +6903,6 @@ pre[class*=language-]:after, pre[class*=language-]:before {
   font-size: 14px;
 }
 
-.form-control2 {
-  background: #f4f7fa;
-  padding: 10px 20px;
-  font-size: 14px;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
 .custom-select:focus,
 .form-control:focus {
   background: #f4f7fa;
@@ -10648,4 +10639,25 @@ div.code-toolbar > .toolbar span:hover {
   text-decoration: none;
   font-weight: bold;
   color: #748892;
+}
+
+
+
+
+.form-control2 {
+  background: #f4f7fa;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.search-bar {
+  background: #f4f7fa;
+  padding: 7px 20px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }

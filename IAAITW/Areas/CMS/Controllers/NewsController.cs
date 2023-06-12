@@ -30,6 +30,20 @@ namespace IAAITW.Areas.CMS.Controllers
             return View(db.News.OrderByDescending(p => p.GoTop).ThenByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
+        [HttpPost]
+        public ActionResult Index(string search, int? page)
+        {
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+
+            var news = db.News.AsQueryable();
+            if (!string.IsNullOrEmpty(search))
+            {
+                news = news.Where(x => x.Title.Contains(search) || x.Content.Contains(search));
+            }
+            ViewBag.Search = search;
+            return View(news.OrderByDescending(p => p.GoTop).ThenByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
+        }
+
         // GET: CMS/News/Create
         public ActionResult Create()
         {

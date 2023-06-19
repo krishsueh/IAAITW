@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using IAAITW.Models;
 using MvcPaging;
+using Newtonsoft.Json;
 
 namespace IAAITW.Areas.CMS.Controllers
 {
@@ -77,9 +78,44 @@ namespace IAAITW.Areas.CMS.Controllers
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "新增帳號", Url = null });
             ViewBag.Breadcrumb = breadcrumb;
 
+
+            List<Permission> permissions = db.Permissions.ToList();
+            var roots = permissions.Where(p => p.ParentId == null);
+
+            StringBuilder sbTree = new StringBuilder();
+            sbTree.Append("[");
+            foreach (var item in roots)
+            {
+                sbTree.Append(GetNode(item));
+                sbTree.Append(",");
+            }
+            sbTree.Append("]");
+            ViewBag.Tree = sbTree.ToString();
+
             ViewBag.IdentityId = new SelectList(db.CMSIdentities, "Id", "Identity");
             return View();
         }
+
+        private string GetNode(Permission item)
+        {
+            StringBuilder sbNode = new StringBuilder();
+            sbNode.Append($@"{{'id': '{item.Code}', 'text': '{item.Subject}'");
+            if (item.Permissions.Count > 0)
+            {
+                sbNode.Append(", 'children': [");
+                foreach (var items in item.Permissions)
+                {
+                    sbNode.Append(GetNode(items));
+                    sbNode.Append(",");
+                }
+                sbNode.Append("]");
+            }
+            sbNode.Append("}");
+
+            return sbNode.ToString();
+        }
+
+
 
         // POST: CMS/Accounts/Create
         [HttpPost]
@@ -161,6 +197,37 @@ namespace IAAITW.Areas.CMS.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<Permission> permissions = db.Permissions.ToList();
+            var roots = permissions.Where(p => p.ParentId == null);
+
+            StringBuilder sbTree = new StringBuilder();
+            sbTree.Append("[");
+            foreach (var item in roots)
+            {
+                sbTree.Append(GetNode(item));
+                sbTree.Append(",");
+            }
+            sbTree.Append("]");
+            ViewBag.Tree = sbTree.ToString();
+
+            if (!String.IsNullOrEmpty(cMSAccount.Permission))
+            {
+                string[] array = cMSAccount.Permission.ToString().Split(',');
+                for (int i = 0; i < array.Length; i++)
+                {
+                    array[i] = "'" + array[i] + "'";
+                }
+                string open = "[" + string.Join(",", array) + "]";
+                ViewBag.Default = open.ToString();
+            }
+            else
+            {
+                ViewBag.Default = "['']";
+            }
+         
+
+
             ViewBag.IdentityId = new SelectList(db.CMSIdentities, "Id", "Identity", cMSAccount.IdentityId);
             return View(cMSAccount);
         }

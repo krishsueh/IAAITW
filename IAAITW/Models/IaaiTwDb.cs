@@ -31,6 +31,7 @@ namespace IAAITW.Models
         public virtual DbSet<BoardReply> BoardReplies { get; set; }
         public virtual DbSet<Carousel> Carousels { get; set; }
         public virtual DbSet<Partner> Partners { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
     }
 
     //public class MyEntity

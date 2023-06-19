@@ -40,5 +40,9 @@ namespace IAAITW.Models
         public int IdentityId { get; set; }
         [ForeignKey("IdentityId")]
         public virtual CMSIdentity MyIdentity { get; set; }
+
+        [Display(Name = "權限")]
+        [MaxLength(500)]
+        public string Permission { get; set; }
     }
 }

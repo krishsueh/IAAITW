@@ -359,6 +359,10 @@
     <Compile Include="Migrations\202306100908039_addCarousel.Designer.cs">
       <DependentUpon>202306100908039_addCarousel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306181014334_addPermission.cs" />
+    <Compile Include="Migrations\202306181014334_addPermission.Designer.cs">
+      <DependentUpon>202306181014334_addPermission.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\Board.cs" />
@@ -372,6 +376,7 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Partner.cs" />
+    <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1024,6 +1029,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Scripts\dist\tree.js" />
+    <Content Include="Scripts\dist\tree.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1569,6 +1576,8 @@
     <Content Include="Areas\CMS\Views\Shared\LandingPage_Layout.cshtml" />
     <Content Include="Areas\CMS\Views\Carousels\Index.cshtml" />
     <Content Include="Areas\CMS\Views\Carousels\Create.cshtml" />
+    <Content Include="Scripts\dist\tree.js.map" />
+    <Content Include="Scripts\dist\tree.min.js.map" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1771,6 +1780,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306100908039_addCarousel.resx">
       <DependentUpon>202306100908039_addCarousel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306181014334_addPermission.resx">
+      <DependentUpon>202306181014334_addPermission.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

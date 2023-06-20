@@ -100,6 +100,7 @@ namespace IAAITW.Areas.CMS.Controllers
         {
             StringBuilder sbNode = new StringBuilder();
             sbNode.Append($@"{{'id': '{item.Code}', 'text': '{item.Subject}'");
+
             if (item.Permissions.Count > 0)
             {
                 sbNode.Append(", 'children': [");
@@ -110,6 +111,7 @@ namespace IAAITW.Areas.CMS.Controllers
                 }
                 sbNode.Append("]");
             }
+            
             sbNode.Append("}");
 
             return sbNode.ToString();

@@ -66,63 +66,18 @@
     <nav class="pcoded-navbar">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-                <a href="index.html" class="b-brand">
+                <a href="@Url.Action("Index","Home")" class="b-brand">
                     <div class="b-bg">
                         <i class="feather icon-trending-up"></i>
                     </div>
-                    <span class="b-title">Datta Able</span>
+                    <span class="b-title">ＩＡＡＩ－ＴＷ</span>
                 </a>
                 <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
             </div>
             <div class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
 
-                    @*首頁、帳號管理*@
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>後台管理</label>
-                    </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="@Url.Action("Index","Home")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">首頁</span></a>
-                    </li>
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item" style="display: @display;">
-                        <a href="@Url.Action("Index","Accounts")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">帳號管理</span></a>
-                    </li>
-
-                    @*前台內容管理*@
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>前台管理</label>
-                    </li>
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item">
-                        <a href="@Url.Action("Index","Carousels")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">前台首頁</span></a>
-                    </li>
-                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">關於我們</span></a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="@Url.Action("AboutUs","Article")" class="">關於我們</a></li>
-                            <li class=""><a href="@Url.Action("Organization","Article")" class="">組織架構</a></li>
-                            <li class=""><a href="@Url.Action("History","Article")" class="">沿革</a></li>
-                            <li class=""><a href="@Url.Action("LicensedMember","Article")" class="">配證會員</a></li>
-                            <li class=""><a href="@Url.Action("Expert","Article")" class="">專家介紹</a></li>
-                        </ul>
-                    </li>
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item">
-                        <a href="@Url.Action("Index","News")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">訊息發佈</span></a>
-                    </li>
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item" style="display: @display;">
-                        <a href="@Url.Action("Index","Members")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">會員專區</span></a>
-                    </li>
-                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">協會業務</span></a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a href="@Url.Action("Job","Article")" class="">協會業務</a></li>
-                            <li class=""><a href="@Url.Action("Licenses","Article")" class="">訓練、認證、發照</a></li>
-                            <li class=""><a href="@Url.Action("Refer","Article")" class="">諮詢、顧問</a></li>
-                            <li class=""><a href="@Url.Action("Survey","Article")" class="">縱火調查</a></li>
-                        </ul>
-                    </li>
-                    <li data-username="form elements advance componant validation masking wizard picker select" class="nav-item">
-                        <a href="@Url.Action("Index","Knowledge")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">知識庫</span></a>
-                    </li>
+                    @Html.Action("SideMenu","Home")
 
                 </ul>
             </div>

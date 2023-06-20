@@ -93,5 +93,51 @@ namespace IAAITW.Areas.CMS.Controllers
 
             return RedirectToAction("Login", "Home");
         }
+
+        public ActionResult SideMenu()
+        {
+            List<Permission> permissions = db.Permissions.ToList();
+            var roots = permissions.Where(p => p.ParentId == null);
+
+            StringBuilder sbTree = new StringBuilder();
+            foreach (var root in roots)
+            {
+                sbTree.Append(GetNode(root));
+            }
+            ViewBag.Tree = sbTree.ToString();
+
+            return PartialView();
+        }
+
+        private string GetNode(Permission root)
+        {
+            StringBuilder sbNode = new StringBuilder();
+
+            if (root.Permissions.Count() > 0)
+            {
+                sbNode.Append($"<li class='nav-item pcoded-hasmenu'>");
+                sbNode.Append($"<a href='javascript:' class='nav-link '><span class='pcoded-micon'><i class='feather icon-box'></i></span><span class='pcoded-mtext'>{root.Subject}</span></a>");
+                sbNode.Append("<ul class='pcoded-submenu'>");
+                foreach (var items in root.Permissions)
+                {
+                    sbNode.Append(GetSubNode(items));
+                }
+                sbNode.Append("</ul>");
+            }
+            else
+            {
+                sbNode.Append($"<li class='nav-item'>");
+                sbNode.Append($"<a href='{root.Url}'><span class='pcoded-micon'><i class='feather icon-file-text'></i></span><span class='pcoded-mtext'>{root.Subject}</span></a>");
+            }
+            sbNode.Append("</li>");
+            return sbNode.ToString();
+        }
+
+        private string GetSubNode(Permission items)
+        {
+            StringBuilder sbSubNode = new StringBuilder();
+            sbSubNode.Append($"<li><a href='{items.Url}'>{items.Subject}</a></li>");
+            return sbSubNode.ToString();
+        }
     }
 }

@@ -10,12 +10,14 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using IAAITW.Areas.CMS.Security;
 using IAAITW.Models;
 using MvcPaging;
 using Newtonsoft.Json;
 
 namespace IAAITW.Areas.CMS.Controllers
 {
+    [PermissionFilters]
     public class AccountsController : Controller
     {
         private IaaiTwDb db = new IaaiTwDb();

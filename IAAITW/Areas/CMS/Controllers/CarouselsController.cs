@@ -1,4 +1,5 @@
-﻿using IAAITW.Models;
+﻿using IAAITW.Areas.CMS.Security;
+using IAAITW.Models;
 using MvcPaging;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace IAAITW.Areas.CMS.Controllers
 {
+    [PermissionFilters]
     public class CarouselsController : Controller
     {
         private IaaiTwDb db = new IaaiTwDb();

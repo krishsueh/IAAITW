@@ -1,4 +1,5 @@
-﻿using IAAITW.Models;
+﻿using IAAITW.Areas.CMS.Security;
+using IAAITW.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace IAAITW.Areas.CMS.Controllers
         private IaaiTwDb db = new IaaiTwDb();
 
         // GET: CMS/Home
+        [PermissionFilters]
         public ActionResult Index()
         {
             return View();
@@ -61,7 +63,7 @@ namespace IAAITW.Areas.CMS.Controllers
             if (findAccount != null)
             {
                 //宣告驗證票要夾帶的資料 (用;區隔)
-                string userData = findAccount.Id + ";" + findAccount.Name + ";" + findAccount.Email + ";" + findAccount.MyIdentity.Identity + ";" + findAccount.Headshot;
+                string userData = findAccount.Id + ";" + findAccount.Name + ";" + findAccount.Email + ";" + findAccount.MyIdentity.Identity + ";" + findAccount.Headshot + ";" + findAccount.Permission;
 
                 //設定驗證票(夾帶資料，cookie 命名)
                 SetAuthenTicket(userData, findAccount.Name);

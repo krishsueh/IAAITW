@@ -9,11 +9,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using IAAITW.Areas.CMS.Security;
 using IAAITW.Models;
 using MvcPaging;
 
 namespace IAAITW.Areas.CMS.Controllers
 {
+    [PermissionFilters]
     [Authorize(Roles = "最高管理者")]
     public class MembersController : Controller
     {

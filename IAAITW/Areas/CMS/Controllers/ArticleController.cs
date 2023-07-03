@@ -4,10 +4,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IAAITW.Areas.CMS.Security;
 using IAAITW.Models;
 
 namespace IAAITW.Areas.CMS.Controllers
 {
+    [PermissionFilters]
     public class ArticleController : Controller
     {
         private IaaiTwDb db = new IaaiTwDb();

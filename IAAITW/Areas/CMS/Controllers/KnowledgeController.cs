@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using IAAITW.Areas.CMS.Security;
 using IAAITW.Models;
 using MvcPaging;
 
 namespace IAAITW.Areas.CMS.Controllers
 {
+    [PermissionFilters]
     public class KnowledgeController : Controller
     {
         private IaaiTwDb db = new IaaiTwDb();

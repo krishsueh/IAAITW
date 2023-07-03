@@ -253,6 +253,7 @@
     <Compile Include="Areas\CMS\Controllers\MembersController.cs" />
     <Compile Include="Areas\CMS\Controllers\NewsController.cs" />
     <Compile Include="Areas\CMS\Controllers\PartnersController.cs" />
+    <Compile Include="Areas\CMS\Security\PermissionFilters.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ForumController.cs" />

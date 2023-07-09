@@ -69,7 +69,7 @@ namespace IAAITW.Areas.CMS.Security
         {
             StringBuilder sbSubNode = new StringBuilder();
 
-            if (!userPermissions.Contains(items.Code))
+            if (!userPermissions.Any(p => p.StartsWith(items.Code)))
             {
                 // Skip this menu item if the user doesn't have permission
                 return "";

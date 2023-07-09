@@ -20,7 +20,8 @@ namespace IAAITW.Areas.CMS.Controllers
         public ActionResult Index(int? page)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "輪播圖", Url = Url.Action("Index", "Carousels") });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "關於我們", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "輪播圖", Url = null });
             ViewBag.Breadcrumb = breadcrumb;
 
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;

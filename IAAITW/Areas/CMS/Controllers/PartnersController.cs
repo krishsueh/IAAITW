@@ -23,7 +23,7 @@ namespace IAAITW.Areas.CMS.Controllers
         public ActionResult Index(int? page)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
-            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "關於我們", Url = null });
+            breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "前台首頁", Url = null });
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協力單位", Url = null });
             ViewBag.Breadcrumb = breadcrumb;
 

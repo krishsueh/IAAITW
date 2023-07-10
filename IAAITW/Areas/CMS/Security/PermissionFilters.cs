@@ -30,9 +30,24 @@ namespace IAAITW.Areas.CMS.Security
             {
                 sbTree.Append(GetNode(root, userPermissions));
             }
-
-            //todo:遞迴組字串
             filterContext.Controller.ViewBag.menu = sbTree.ToString();
+
+            // Breadcrum
+            string path = System.Web.HttpContext.Current.Request.Url.AbsolutePath;
+            StringBuilder sbBreadcrum = new StringBuilder();
+            foreach (var root in roots)
+            {
+                if (root.Permissions.Count() == 0 && root.Url == path)
+                {
+                    sbBreadcrum.Append($"<li class='breadcrumb-item'><a href='{root.Url}'>{root.Subject}</a></li>");
+                }
+                else
+                {
+                    sbBreadcrum.Append(GetBreadcrum(root, path));
+                }
+            }
+            filterContext.Controller.ViewBag.breadcrum = sbBreadcrum.ToString();
+
         }
 
         private string GetNode(Permission root, List<string> userPermissions)
@@ -79,6 +94,38 @@ namespace IAAITW.Areas.CMS.Security
             return sbSubNode.ToString();
         }
 
+        private string GetBreadcrum(Permission root, string path)
+        {
+            StringBuilder breadcrum = new StringBuilder();
+            if (root.Permissions.Count > 0)
+            {
+                foreach (var item in root.Permissions)
+                {
+                    if (item.Url == path)
+                    {
+                        breadcrum.Append($"<li class='breadcrumb-item'>{root.Subject}</li>");
+                        breadcrum.Append($"<li class='breadcrumb-item'><a href='{item.Url}'>{item.Subject}</a></li>");
+                    }
+                    else
+                    {
+                        if (item.Permissions.Count > 0)
+                        {
+                            foreach (var items in item.Permissions)
+                            {
+                                if (items.Url == path)
+                                {
+                                    breadcrum.Append($"<li class='breadcrumb-item'>{root.Subject}</li>");
+                                    breadcrum.Append($"<li class='breadcrumb-item'><a href='{item.Url}'>{item.Subject}</a></li>");
+                                    breadcrum.Append($"<li class='breadcrumb-item'><a href='{items.Url}'>{items.Subject}</a></li>");
+                                }
+                            }
+                        }
 
+                    }
+
+                }
+            }
+            return breadcrum.ToString();
+        }
     }
 }

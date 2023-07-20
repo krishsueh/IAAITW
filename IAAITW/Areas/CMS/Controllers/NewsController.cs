@@ -20,30 +20,40 @@ namespace IAAITW.Areas.CMS.Controllers
         private const int DefaultPageSize = 5;
 
         // GET: CMS/News
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string search)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "訊息列表", Url = null });
             ViewBag.Breadcrumb = breadcrumb;
 
+            if (page == null)
+            {
+                Session.Clear();
+            }
+
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
-            // 排序由最新到最舊
-            return View(db.News.OrderByDescending(p => p.GoTop).ThenByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
-        }
-
-        [HttpPost]
-        public ActionResult Index(string search, int? page)
-        {
-            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            if (!string.IsNullOrEmpty(search))
+            {
+                Session["search"] = search;
+            }
+            else
+            {
+                if (Session["search"] != null)
+                {
+                    search = Session["search"].ToString();
+                }
+            }
 
             var news = db.News.AsQueryable();
             if (!string.IsNullOrEmpty(search))
             {
                 news = news.Where(x => x.Title.Contains(search) || x.Content.Contains(search));
             }
+
             ViewBag.Search = search;
-            return View(news.OrderByDescending(p => p.GoTop).ThenByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
+            // 排序由最新到最舊
+            return View(db.News.OrderByDescending(p => p.GoTop).ThenByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         // GET: CMS/News/Create

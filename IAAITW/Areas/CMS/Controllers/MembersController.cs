@@ -23,30 +23,40 @@ namespace IAAITW.Areas.CMS.Controllers
         private const int DefaultPageSize = 5;
 
         // GET: CMS/Members
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string search)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員專區", Url = null });
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "會員列表", Url = null });
             ViewBag.Breadcrumb = breadcrumb;
 
+            if (page == null)
+            {
+                Session.Clear();
+            }
+
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
-            return View(db.Members.OrderBy(x => x.Id).ToPagedList(currentPageIndex, DefaultPageSize));
-        }
-
-        [HttpPost]
-        public ActionResult Index(string search, int? page)
-        {
-            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            if (!string.IsNullOrEmpty(search))
+            {
+                Session["search"] = search;
+            }
+            else
+            {
+                if (Session["search"] != null)
+                {
+                    search = Session["search"].ToString();
+                }
+            }
 
             var members = db.Members.AsQueryable();
             if (!string.IsNullOrEmpty(search))
             {
                 members = members.Where(x => x.Account.Contains(search) || x.Name.Contains(search) || x.Gender.ToString().Contains(search) || x.MemberTypes.ToString().Contains(search) || x.Tel.Contains(search) || x.Mobile.Contains(search) || x.Address.Contains(search) || x.Email.Contains(search));
             }
+
             ViewBag.Search = search;
-            return View(members.OrderBy(x => x.Id).ToPagedList(currentPageIndex, DefaultPageSize));
+            return View(db.Members.OrderBy(x => x.Id).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         // GET: CMS/Members/Details/5

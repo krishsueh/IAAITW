@@ -19,29 +19,38 @@ namespace IAAITW.Areas.CMS.Controllers
         private IaaiTwDb db = new IaaiTwDb();
         private const int DefaultPageSize = 3;
 
-        // GET: CMS/Partners
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string search)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "前台首頁", Url = null });
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "協力單位", Url = null });
             ViewBag.Breadcrumb = breadcrumb;
 
+            if (page == null)
+            {
+                Session.Clear();
+            }
+
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
-            return View(db.Partners.OrderBy(p => p.Id).ToPagedList(currentPageIndex, DefaultPageSize));
-        }
-
-        [HttpPost]
-        public ActionResult Index(string search, int? page)
-        {
-            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            if (!string.IsNullOrEmpty(search))
+            {
+                Session["search"] = search;
+            }
+            else
+            {
+                if (Session["search"] != null)
+                {
+                    search = Session["search"].ToString();
+                }
+            }
 
             var partners = db.Partners.AsQueryable();
             if (!string.IsNullOrEmpty(search))
             {
                 partners = partners.Where(x => x.Name.Contains(search));
             }
+
             ViewBag.Search = search;
             return View(partners.OrderBy(p => p.Id).ToPagedList(currentPageIndex, DefaultPageSize));
         }

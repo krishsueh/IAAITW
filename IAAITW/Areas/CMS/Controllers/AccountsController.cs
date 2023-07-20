@@ -25,30 +25,39 @@ namespace IAAITW.Areas.CMS.Controllers
 
         // GET: CMS/Accounts
         [Authorize(Roles = "最高管理者")]
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string search)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
             breadcrumb.Add(new ViewModel.BreadcrumbsItem { Text = "帳號管理", Url = Url.Action("Index", "Accounts") });
             ViewBag.Breadcrumb = breadcrumb;
 
+            if (page == null)
+            {
+                Session.Clear();
+            }
+
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
 
-            var cMSAccounts = db.CMSAccounts.Include(c => c.MyIdentity);
-            return View(cMSAccounts.OrderBy(p => p.Id).ToPagedList(currentPageIndex, DefaultPageSize));
-        }
-
-        [HttpPost]
-        public ActionResult Index(string search, int? page)
-        {
-            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
-
-            var accounts = db.CMSAccounts.AsQueryable();
             if (!string.IsNullOrEmpty(search))
             {
-                accounts = accounts.Where(x => x.MyIdentity.Identity.Contains(search) || x.Name.Contains(search) || x.Email.Contains(search));
+                Session["search"] = search;
             }
+            else
+            {
+                if (Session["search"] != null)
+                {
+                    search = Session["search"].ToString();
+                }
+            }
+
+            var cMSAccounts = db.CMSAccounts.Include(c => c.MyIdentity);
+            if (!string.IsNullOrEmpty(search))
+            {
+                cMSAccounts = cMSAccounts.Where(x => x.MyIdentity.Identity.Contains(search) || x.Name.Contains(search) || x.Email.Contains(search));
+            }
+
             ViewBag.Search = search;
-            return View(accounts.OrderBy(p => p.Id).ToPagedList(currentPageIndex, DefaultPageSize));
+            return View(cMSAccounts.OrderBy(p => p.Id).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         // GET: CMS/Accounts/Details/5

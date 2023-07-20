@@ -13,7 +13,7 @@
 <div class="card-block">
     @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
     <div style="display: inline-block; float: right">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Index", "News", FormMethod.Get))
         {
             <input id="search" name="search" type="search" value="@ViewBag.Search" placeholder="標題、內文" class="search-bar" />
             <input type="submit" value="搜尋" class="btn btn-light" />
@@ -77,6 +77,6 @@
         }
     </table>
     <div class="pager">
-        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(x => x.AlwaysAddFirstPageNumber())
     </div>
 </div>

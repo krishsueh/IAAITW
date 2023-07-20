@@ -32,21 +32,21 @@ namespace IAAITW.Areas.CMS.Security
             }
             filterContext.Controller.ViewBag.menu = sbTree.ToString();
 
-            // Breadcrum
-            string path = System.Web.HttpContext.Current.Request.Url.AbsolutePath;
-            StringBuilder sbBreadcrum = new StringBuilder();
-            foreach (var root in roots)
-            {
-                if (root.Permissions.Count() == 0 && root.Url == path)
-                {
-                    sbBreadcrum.Append($"<li class='breadcrumb-item'><a href='{root.Url}'>{root.Subject}</a></li>");
-                }
-                else
-                {
-                    sbBreadcrum.Append(GetBreadcrum(root, path));
-                }
-            }
-            filterContext.Controller.ViewBag.breadcrum = sbBreadcrum.ToString();
+            //// Breadcrum
+            //string path = System.Web.HttpContext.Current.Request.Url.AbsolutePath;
+            //StringBuilder sbBreadcrum = new StringBuilder();
+            //foreach (var root in roots)
+            //{
+            //    if (root.Permissions.Count() == 0 && root.Url == path)
+            //    {
+            //        sbBreadcrum.Append($"<li class='breadcrumb-item'><a href='{root.Url}'>{root.Subject}</a></li>");
+            //    }
+            //    else
+            //    {
+            //        sbBreadcrum.Append(GetBreadcrum(root, path));
+            //    }
+            //}
+            //filterContext.Controller.ViewBag.breadcrum = sbBreadcrum.ToString();
 
         }
 

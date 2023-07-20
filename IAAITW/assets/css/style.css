@@ -2809,7 +2809,7 @@ p.text-muted {
 .pcoded-content {
   position: relative;
   display: block;
-  padding: 30px;
+  padding: 0px 30px 30px 30px;
 }
 
 .pcoded-main-container {

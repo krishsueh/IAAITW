@@ -52,7 +52,7 @@ namespace IAAITW.Areas.CMS.Controllers
             }
 
             ViewBag.Search = search;
-            return View(db.Knowledges.OrderByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
+            return View(knowledges.OrderByDescending(p => p.ReleaseDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         // GET: CMS/Knowledge/Create

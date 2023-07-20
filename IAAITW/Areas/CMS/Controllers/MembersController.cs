@@ -56,7 +56,7 @@ namespace IAAITW.Areas.CMS.Controllers
             }
 
             ViewBag.Search = search;
-            return View(db.Members.OrderBy(x => x.Id).ToPagedList(currentPageIndex, DefaultPageSize));
+            return View(members.OrderBy(x => x.Id).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         // GET: CMS/Members/Details/5

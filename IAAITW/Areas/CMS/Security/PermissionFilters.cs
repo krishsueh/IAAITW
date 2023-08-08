@@ -42,10 +42,7 @@ namespace IAAITW.Areas.CMS.Security
             websiteUrl = string.Join("/", segments.Take(4));
 
             // 檢查特定網址，如果是"/CMS/Home"則直接返回
-            if (websiteUrl == "/CMS/Home")
-            {
-                return;
-            }
+            if (websiteUrl == "/CMS/Home") return;
 
             // 檢查用戶的所有權限，看是否有一個匹配當前網址
             bool hasPermission = userPermissions.Any(userPermission =>

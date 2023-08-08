@@ -24,7 +24,7 @@ namespace IAAITW.Areas.CMS.Controllers
         private const int DefaultPageSize = 5;
 
         // GET: CMS/Accounts
-        [Authorize(Roles = "最高管理者")]
+        //[Authorize(Roles = "最高管理者")]
         public ActionResult Index(int? page, string search)
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
@@ -81,7 +81,7 @@ namespace IAAITW.Areas.CMS.Controllers
         }
 
         // GET: CMS/Accounts/Create
-        [Authorize(Roles = "最高管理者")]
+        //[Authorize(Roles = "最高管理者")]
         public ActionResult Create()
         {
             var breadcrumb = new List<ViewModel.BreadcrumbsItem>();
@@ -132,7 +132,7 @@ namespace IAAITW.Areas.CMS.Controllers
 
         // POST: CMS/Accounts/Create
         [HttpPost]
-        [Authorize(Roles = "最高管理者")]
+        //[Authorize(Roles = "最高管理者")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CMSAccount account, HttpPostedFileBase file)
         {
@@ -298,7 +298,7 @@ namespace IAAITW.Areas.CMS.Controllers
 
         // POST: CMS/Accounts/Delete/5
         [HttpPost]
-        [Authorize(Roles = "最高管理者")]
+        //[Authorize(Roles = "最高管理者")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {

@@ -16,7 +16,7 @@ using MvcPaging;
 namespace IAAITW.Areas.CMS.Controllers
 {
     [PermissionFilters]
-    [Authorize(Roles = "最高管理者")]
+    //[Authorize(Roles = "最高管理者")]
     public class MembersController : Controller
     {
         private IaaiTwDb db = new IaaiTwDb();

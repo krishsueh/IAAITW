@@ -11,7 +11,11 @@
 </div>
 
 <div class="card-block">
-    @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+    @if ((ViewBag.Permissions).Contains("A01-1"))
+    {
+        @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+    }
+
     <div style="display: inline-block; float: right">
         @using (Html.BeginForm("Index", "Accounts", FormMethod.Get))
         {
@@ -51,17 +55,28 @@
                     @Html.DisplayFor(modelItem => item.MyIdentity.Identity)
                 </td>
                 <td class="align-middle">
-                    <a href="@Url.Action("Edit","Accounts", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Name)</a>
+                    @if ((ViewBag.Permissions).Contains("A01-2"))
+                    {
+                        <a href="@Url.Action("Edit", "Accounts", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Name)</a>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Name)
+                    }
                 </td>
                 <td class="align-middle">
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td class="align-middle">
-                    @using (Html.BeginForm("Delete", "Accounts", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                    @if ((ViewBag.Permissions).Contains("A01-3"))
                     {
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-outline-danger" style="display: @(item.IdentityId==1?"none":"block")">刪除</button>
+                        using (Html.BeginForm("Delete", "Accounts", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-outline-danger" style="display: @(item.IdentityId==1?"none":"block")">刪除</button>
+                        }
                     }
+
                 </td>
             </tr>
             startIndex++;

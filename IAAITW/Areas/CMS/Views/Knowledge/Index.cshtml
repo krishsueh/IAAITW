@@ -11,7 +11,11 @@
 </div>
 
 <div class="card-block">
-    @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+    @if ((ViewBag.Permissions).Contains("G01-1"))
+    {
+        @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+    }
+
     <div style="display: inline-block; float: right">
         @using (Html.BeginForm("Index", "Knowledge", FormMethod.Get))
         {
@@ -48,13 +52,23 @@
                     @item.ReleaseDate.ToString("yyyy-MM-dd")
                 </td>
                 <td>
-                    @Html.ActionLink(@Html.DisplayFor(modelItem => item.Title).ToString(), "Edit", new { id = item.Id })
+                    @if ((ViewBag.Permissions).Contains("G01-2"))
+                    {
+                        @Html.ActionLink(@Html.DisplayFor(modelItem => item.Title).ToString(), "Edit", new { id = item.Id })
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Title)
+                    }
                 </td>
                 <td>
-                    @using (Html.BeginForm("Delete", "Knowlege", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                    @if ((ViewBag.Permissions).Contains("G01-3"))
                     {
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-outline-danger">刪除</button>
+                        using (Html.BeginForm("Delete", "Knowlege", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-outline-danger">刪除</button>
+                        }
                     }
                 </td>
             </tr>

@@ -22,10 +22,12 @@
 
 
 <div class="card-block">
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        新增
-    </button>
+    @if ((ViewBag.Permissions).Contains("B01-1"))
+    {
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            新增
+        </button>
+    }
 
     <!--新增輪播圖彈窗-->
     @using (Html.BeginForm("Create", "Carousels", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -77,13 +79,16 @@
             <tr>
                 <td>@startIndex</td>
                 <td>
-                    <img src="~/upload/carousel/@item.Image" width="100" alt="" />
+                    <img src="~/upload/carousel/@item.Image" width="200" alt="" />
                 </td>
                 <td>
-                    @using (Html.BeginForm("Delete", "Carousels", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                    @if ((ViewBag.Permissions).Contains("B01-2"))
                     {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" name="delete" value="刪除" class="btn btn-outline-danger" />
+                        using (Html.BeginForm("Delete", "Carousels", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="submit" name="delete" value="刪除" class="btn btn-outline-danger" />
+                        }
                     }
                 </td>
             </tr>

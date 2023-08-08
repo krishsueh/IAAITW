@@ -11,7 +11,10 @@
 </div>
 
 <div class="card-block">
-    @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+    @if ((ViewBag.Permissions).Contains("B02-1"))
+    {
+        @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+    }
 
     <div style="display: inline-block; float: right">
         @using (Html.BeginForm("Index", "Partners", FormMethod.Get))
@@ -54,19 +57,26 @@
                     <img src="~/upload/partner/@item.Image" width="100" alt="@item.Name" />
                 </td>
                 <td>
-                    @Html.ActionLink(@item.Name, "Edit", new
+                    @if ((ViewBag.Permissions).Contains("B02-2"))
                     {
-                        id = item.Id
-    })
+                        @Html.ActionLink(@item.Name, "Edit", new { id = item.Id })
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Name)
+                    }
                 </td>
                 <td>
                     <a href=@item.Link target="_blank">@item.Link</a>
                 </td>
                 <td>
-                    @using (Html.BeginForm("Delete", "Partners", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                    @if ((ViewBag.Permissions).Contains("B02-3"))
                     {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" name="delete" value="刪除" class="btn btn-outline-danger" />
+                        using (Html.BeginForm("Delete", "Partners", new { id = item.Id }, FormMethod.Post, new { onsubmit = "return confirm('確定要刪除嗎?');" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="submit" name="delete" value="刪除" class="btn btn-outline-danger" />
+                        }
                     }
                 </td>
             </tr>

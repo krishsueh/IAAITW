@@ -23,6 +23,8 @@ namespace IAAITW.Areas.CMS.Security
             string permissionInToken = userDataParts[5];
             List<string> userPermissions = permissionInToken.Split(',').ToList();
 
+            filterContext.Controller.ViewBag.Permissions = userPermissions;
+
             #region Menu
             List<Permission> permissions = db.Permissions.ToList();
             var roots = permissions.Where(p => p.ParentId == null);
@@ -42,7 +44,7 @@ namespace IAAITW.Areas.CMS.Security
             websiteUrl = string.Join("/", segments.Take(4));
 
             // 檢查特定網址，如果是"/CMS/Home"則直接返回
-            if (websiteUrl == "/CMS/Home") return;
+            if (websiteUrl == "/CMS/Home" || websiteUrl == "/CMS/News/GoTop") return;
 
             // 檢查用戶的所有權限，看是否有一個匹配當前網址
             bool hasPermission = userPermissions.Any(userPermission =>

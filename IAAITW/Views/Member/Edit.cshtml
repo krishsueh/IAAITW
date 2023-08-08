@@ -102,8 +102,11 @@
             <div class="col-sm-7">
                 @Html.CheckBoxFor(model => model.InternationalMembership)
                 為國際縱火調查學會之當年度有效會員，請檢附會員證影本
-                <br><a href="~/upload/membership/@Html.DisplayFor(model => model.MembershipFile)" target="_blank">檢視會員證影本</a><br>
-                <input type="file" name="file" style="display: inline-block" />
+                @if (Model.MembershipFile != null)
+                {
+                    <br><a href="~/upload/membership/@Html.DisplayFor(model => model.MembershipFile)" target="_blank">檢視會員證影本</a>
+                }
+                <br><input type="file" name="file" style="display: inline-block" />
                 <div class="text-danger" style="display: inline-block">@ViewBag.Msg</div>
             </div>
         </div>
